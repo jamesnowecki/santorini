@@ -1,7 +1,7 @@
-// let level1PiecesUsed = 0;
-// let level2PiecesUsed = 0;
-// let level3PiecesUsed = 0;
-// let level4PiecesUsed = 0;
+let level1PiecesUsed = 0;
+let level2PiecesUsed = 0;
+let level3PiecesUsed = 0;
+let level4PiecesUsed = 0;
 
 
 
@@ -21,30 +21,37 @@
 // };
 
 
-const logOnCosole = () => {
-   return console.log(cats r grate)
-}
-
-
+// const fn1 = () => {
+//    (24 - level1PiecesUsed) = document.getElementById('level-1-remaining').innerText;
+//    (18 - level2PiecesUsed) = document.getElementById('level-2-remaining').innerText;
+//    (14 - level3PiecesUsed) = document.getElementById('level-3-remaining').innerText;
+//    (18 - level4PiecesUsed) = document.getElementById('level-4-remaining').innerText;
+// return
+// };
 
 // const calcRemainingPieces = () => {
 
-//     const printLevel1Pieces = () => {
-//         return (24 - level1PiecesUsed).innerText = document.getElementById('level-1-remaining');
-//     };
+//    const printLevel1Pieces = () => {
+//        return (24 - level1PiecesUsed) = document.getElementById('level-1-remaining').innerText;
+//    };
 
-//     const printLevel2Pieces = () => {
-//         return (18 - level2PiecesUsed).innerText = document.getElementById('level-2-remaining');
-//     };
+//    const printLevel2Pieces = () => {
+//        return (18 - level2PiecesUsed) = document.getElementById('level-2-remaining').innerText;
+//    };
 
-//     const printLevel3Pieces = () => {
-//         return (14 - level3PiecesUsed).innerText = document.getElementById('level-3-remaining');
-//     };
+//    const printLevel3Pieces = () => {
+//        return (14 - level3PiecesUsed) = document.getElementById('level-3-remaining').innerText;
+//    };
 
-//     const printLevel4Pieces = () => {
-//         return (18 - level4PiecesUsed).innerText = document.getElementById('level-4-remaining');
-//     };
+//    const printLevel4Pieces = () => {
+//        return (18 - level4PiecesUsed) = document.getElementById('level-4-remaining').innerText;
+//    };
 
 // return
 
 // }
+
+const fn1 = () => {
+   console.log(24 - level1PiecesUsed);
+   console.log("cat");
+}
