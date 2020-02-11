@@ -4,54 +4,33 @@ let level3PiecesUsed = 0;
 let level4PiecesUsed = 0;
 
 
+const printLevel1Pieces = () => {
+   let level1PiecesRemaining = (22 - level1PiecesUsed);
+   let answer = document.getElementById('level-1-remaining');
+   return answer.innerHTML = level1PiecesRemaining;
+};
 
-// const calcRemainingPieces = () => {
+const printLevel2Pieces = () => {
+   let level2PiecesRemaining = (18 - level2PiecesUsed);
+   let answer = document.getElementById('level-2-remaining');
+   return answer.innerHTML = level2PiecesRemaining;
+};
 
-//         let level1Remaining = (22 - level1PiecesUsed).innerText;
-//         let level1Remaining = document.getElementById('level-1-remaining');
+const printLevel3Pieces = () => {
+   let level3PiecesRemaining = (14 - level3PiecesUsed);
+   let answer = document.getElementById('level-3-remaining');
+   return answer.innerHTML = level3PiecesRemaining;
+};
 
-//         let level2Remaining = (18 - level2PiecesUsed).innerText;
-//         let level2Remaining = document.getElementById('level-2-remaining');
+const printLevel4Pieces = () => {
+   let level4PiecesRemaining = (18 - level4PiecesUsed);
+   let answer = document.getElementById('level-4-remaining');
+   return answer.innerHTML = level4PiecesRemaining;
+}
 
-//         let level3Remaining = (14 - level3PiecesUsed).innerText;
-//         let level3Remaining = document.getElementById('level-3-remaining');
-
-//         let level4Remaining = (18 - level4PiecesUsed).innerText;
-//         let level4Remaining = document.getElementById('level-4-remaining');
-// };
-
-
-// const fn1 = () => {
-//    (24 - level1PiecesUsed) = document.getElementById('level-1-remaining').innerText;
-//    (18 - level2PiecesUsed) = document.getElementById('level-2-remaining').innerText;
-//    (14 - level3PiecesUsed) = document.getElementById('level-3-remaining').innerText;
-//    (18 - level4PiecesUsed) = document.getElementById('level-4-remaining').innerText;
-// return
-// };
-
-// const calcRemainingPieces = () => {
-
-//    const printLevel1Pieces = () => {
-//        return (24 - level1PiecesUsed) = document.getElementById('level-1-remaining').innerText;
-//    };
-
-//    const printLevel2Pieces = () => {
-//        return (18 - level2PiecesUsed) = document.getElementById('level-2-remaining').innerText;
-//    };
-
-//    const printLevel3Pieces = () => {
-//        return (14 - level3PiecesUsed) = document.getElementById('level-3-remaining').innerText;
-//    };
-
-//    const printLevel4Pieces = () => {
-//        return (18 - level4PiecesUsed) = document.getElementById('level-4-remaining').innerText;
-//    };
-
-// return
-
-// }
-
-const fn1 = () => {
-   console.log(24 - level1PiecesUsed);
-   console.log("cat");
+const calcRemainingBlocks = () => {
+   printLevel1Pieces();
+   printLevel2Pieces();
+   printLevel3Pieces();
+   printLevel4Pieces();
 }
