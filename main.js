@@ -1,3 +1,45 @@
+class GridSquare {
+   constructor(height, color, occupant, adjacencies) {
+      this.height = height;
+      this.color = color;
+      this.occupant = occupant;
+      this.adjacencies = adjacencies;
+   }
+
+
+}
+
+const a1 = new GridSquare(0, "green", "empty", ["a2", "b1", "b2"]);
+const a2 = new GridSquare(0, "green", "empty", ["a1", "a3", "b1", "b2", "b3"]);
+const a3 = new GridSquare(0, "green", "empty", ["a2", "a4", "b2", "b3", "b4"]);
+const a4 = new GridSquare(0, "green", "empty", ["a3", "a5", "b3", "b4", "b5"]);
+const a5 = new GridSquare(0, "green", "empty", ["a4", "b4", "b5"]);
+const b1 = new GridSquare(0, "green", "empty", ["a1", "a2", "b2", "c1", "c2"]);
+const b2 = new GridSquare(0, "green", "empty", ["a1", "a2", "a3", "b1", "b3", "c1", "c2", "c3"]);
+const b3 = new GridSquare(0, "green", "empty", ["a2", "a3", "a4", "b2", "b4", "c2", "c3", "c4"]);
+const b4 = new GridSquare(0, "green", "empty", ["a3", "a4", "a5", "b3", "b5", "c3", "c4", "c5"]);
+const b5 = new GridSquare(0, "green", "empty", ["a4", "a5", "b4", "c4", "c5"]);
+const c1 = new GridSquare(0, "green", "empty", ["b1", "b2", "c2", "d1", "d2"]);
+const c2 = new GridSquare(0, "green", "empty", ["b1", "b2", "b3", "c1", "c3", "d1", "d2", "d3"]);
+const c3 = new GridSquare(0, "green", "empty", ["b2", "b3", "b4", "c2", "c4", "d2", "d3", "d4"]);
+const c4 = new GridSquare(0, "green", "empty", ["b3", "b4", "b5", "c3", "c5", "d3", "d4", "d5"]);
+const c5 = new GridSquare(0, "green", "empty", ["b4", "b5", "c4", "d4", "d5"]);
+const d1 = new GridSquare(0, "green", "empty", ["c1", "c2", "d2", "e1", "e2"]);
+const d2 = new GridSquare(0, "green", "empty", ["c1", "c2", "c3", "d1", "d3", "e1", "e2", "e3"]);
+const d3 = new GridSquare(0, "green", "empty", ["c2", "c3", "c4", "d2", "d4", "e2", "e3", "e4"]);
+const d4 = new GridSquare(0, "green", "empty", ["c3", "c4", "c5", "d3", "d5", "e3", "e4", "e5"]);
+const d5 = new GridSquare(0, "green", "empty", ["c4", "c5", "d4", "e4", "e5"]);
+const e1 = new GridSquare(0, "green", "empty", ["d1", "d2", "e2"]);
+const e2 = new GridSquare(0, "green", "empty", ["d1", "d2", "d3", "e1", "e3"]);
+const e3 = new GridSquare(0, "green", "empty", ["d2", "d3", "d4", "e2", "e4"]);
+const e4 = new GridSquare(0, "green", "empty", ["d3", "d4", "d5", "e3", "e5"]);
+const e5 = new GridSquare(0, "green", "empty", ["d4", "d5", "e4"]);
+
+
+
+
+
+
 let level1PiecesUsed = 0;
 let level2PiecesUsed = 0;
 let level3PiecesUsed = 0;
