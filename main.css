@@ -19,9 +19,24 @@ body {
 }
 
 button {
-    background-color: green;
     width: 100%;
     height: 100%;
+}
+
+.height-0 {
+    background-color: yellowgreen;
+}
+
+.height-1 {
+    background-color: yellow;
+}
+
+.height-2 {
+    background-color: orange;
+}
+
+.height-3 {
+    background-color: tomato;
 }
 
 #turn-switch {

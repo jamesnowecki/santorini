@@ -1,12 +1,15 @@
+//define the grid objects
+
 class GridSquare {
-   constructor(height, color, occupant, adjacencies) {
+   constructor(height, occupant, adjacencies) {
       this.height = height;
-      this.color = this.colorArray[this.height];
       this.occupant = occupant;
       this.adjacencies = adjacencies;
-      this.colorArray = ["green", "yellow", "orange", "red", "blue"];
    }
 
+   increaseHeight() {
+      this.height++
+   }
 }
 
 const a1 = new GridSquare(0, "empty", ["a2", "b1", "b2"]);
@@ -37,8 +40,23 @@ const e5 = new GridSquare(0, "empty", ["d4", "d5", "e4"]);
 
 
 
+const printHeight = (gridSquare) => {
+   const grabGridSquare = document.getElementById(gridSquare);
+   grabGridSquare.innerHTML = gridSquare.height;
+}
+
+const buildOnSquare = (gridSquare) => {
+   gridSquare.increaseHeight();
+   printHeight(gridSquare);
+}
+
+console.log(a1.height);
+a1.increaseHeight();
+console.log(a1.height);
 
 
+
+//Return the remaining pieces
 
 let level1PiecesUsed = 0;
 let level2PiecesUsed = 0;
