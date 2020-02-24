@@ -41,18 +41,25 @@ const e5 = new GridSquare(0, "empty", ["d4", "d5", "e4"]);
 
 
 const printHeight = (gridSquare) => {
-   const grabGridSquare = document.getElementById(gridSquare);
-   grabGridSquare.innerHTML = gridSquare.height;
+   const theGridSquare = document.getElementById(gridSquare);
+   theGridSquare.innerHTML = gridSquare.height;
 }
 
+
+
 const buildOnSquare = (gridSquare) => {
+   console.log(gridSquare);
+   const theGridSquare = document.getElementById(gridSquare);
+   theGridSquare.classList.remove("height-" + gridSquare.height);
    gridSquare.increaseHeight();
+   theGridSquare.classList.add("height-" + gridSquare.height);
    printHeight(gridSquare);
 }
 
-console.log(a1.height);
-a1.increaseHeight();
-console.log(a1.height);
+const testyMcTestFace = () => {
+   const theGridID = document.getElementsByClassName("grid-square")[0].id; //this line looks like current issue
+   buildOnSquare(theGridID);
+}
 
 
 
