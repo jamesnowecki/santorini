@@ -56,8 +56,9 @@ const buildOnSquare = (gridSquare) => {
    printHeight(gridSquare);
 }
 
-const testyMcTestFace = () => {
-   const theGridID = document.getElementsByClassName("grid-square")[0].id; //this line looks like current issue
+const testyMcTestFace = (id) => {
+   // const theGridID = document.getElementsByClassName("grid-square")[0].id; //this line looks like current issue
+   const theGridID = id;
    buildOnSquare(theGridID);
 }
 
