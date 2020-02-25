@@ -39,6 +39,10 @@ button {
     background-color: tomato;
 }
 
+.height-4 {
+    background-color: rgb(68, 68, 248)
+}
+
 #turn-switch {
     background-color: blanchedalmond;
     width: 200px;
