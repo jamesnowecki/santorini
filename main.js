@@ -39,6 +39,8 @@ const e3 = new GridSquare("e3", 0, "empty", ["d2", "d3", "d4", "e2", "e4"]);
 const e4 = new GridSquare("e4", 0, "empty", ["d3", "d4", "d5", "e3", "e5"]);
 const e5 = new GridSquare("e5", 0, "empty", ["d4", "d5", "e4"]);
 
+const boardArray = [a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5];
+
 
 
 //funcs to increase height of squares
@@ -48,58 +50,66 @@ const printHeight = (gridSquare) => {
    theGridSquare.innerHTML = gridSquare.height;
 }
 
-
-
 const buildOnSquare = (gridSquare) => {
-   console.log(gridSquare);
    const theGridSquare = document.getElementById(gridSquare.position);
-   console.log(theGridSquare)
    theGridSquare.classList.remove("height-" + gridSquare.height);
    gridSquare.increaseHeight();
    theGridSquare.classList.add("height-" + gridSquare.height);
    printHeight(gridSquare);
 }
 
-const testyMcTestFace = (id) => {
+const buildWhenClicked = (id) => {
    const theGridID = id;
    buildOnSquare(theGridID);
+   calcRemainingBlocks();
 }
 
 
 
 //Return the remaining pieces
 
-let level1PiecesUsed = 0;
-let level2PiecesUsed = 0;
-let level3PiecesUsed = 0;
-let level4PiecesUsed = 0;
-
-
-const printLevel1Pieces = () => {
-   let level1PiecesRemaining = (22 - level1PiecesUsed);
-   let answer = document.getElementById('level-1-remaining');
-   return answer.innerHTML = level1PiecesRemaining;
-};
-
-const printLevel2Pieces = () => {
-   let level2PiecesRemaining = (18 - level2PiecesUsed);
-   let answer = document.getElementById('level-2-remaining');
-   return answer.innerHTML = level2PiecesRemaining;
-};
-
-const printLevel3Pieces = () => {
-   let level3PiecesRemaining = (14 - level3PiecesUsed);
-   let answer = document.getElementById('level-3-remaining');
-   return answer.innerHTML = level3PiecesRemaining;
-};
-
-const printLevel4Pieces = () => {
-   let level4PiecesRemaining = (10 - level4PiecesUsed);
-   let answer = document.getElementById('level-4-remaining');
-   return answer.innerHTML = level4PiecesRemaining;
-}
-
 const calcRemainingBlocks = () => {
+   const level1PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 1;
+   }).length);
+   const level2PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 2;
+   }).length);
+   const level3PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 3;
+   }).length);
+   const level4PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height === 4;
+   }).length);
+   
+   const printLevel1Pieces = () => {
+      const level1PiecesRemaining = (22 - level1PiecesUsed);
+      const answer = document.getElementById('level-1-remaining');
+      console.log(answer);
+      return answer.innerHTML = level1PiecesRemaining;
+   };
+   
+   const printLevel2Pieces = () => {
+      const level2PiecesRemaining = (18 - level2PiecesUsed);
+      const answer = document.getElementById('level-2-remaining');
+      console.log(answer);
+      return answer.innerHTML = level2PiecesRemaining;
+   };
+   
+   const printLevel3Pieces = () => {
+      const level3PiecesRemaining = (14 - level3PiecesUsed);
+      const answer = document.getElementById('level-3-remaining');
+      console.log(answer);
+      return answer.innerHTML = level3PiecesRemaining;
+   };
+   
+   const printLevel4Pieces = () => {
+      const level4PiecesRemaining = (10 - level4PiecesUsed);
+      const answer = document.getElementById('level-4-remaining');
+      console.log(answer);
+      return answer.innerHTML = level4PiecesRemaining;
+   }
+
    printLevel1Pieces();
    printLevel2Pieces();
    printLevel3Pieces();
