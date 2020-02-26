@@ -44,13 +44,65 @@ const boardArray = [a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, 
 
 
 
+const checkEnoughPieces = (height) => {
+   if (height === 0) {
+      return checkPiecesMoreThan0(getRemainingLvl1Pieces);
+   } else if (height === 1) {
+      return checkPiecesMoreThan0(getRemainingLvl2Pieces);
+   } else if (height === 2) {
+      return checkPiecesMoreThan0(getRemainingLvl3Pieces);
+   } else if (height === 3) {
+      return checkPiecesMoreThan0(getRemainingLvl4Pieces);
+   } 
+   return false;
+}
+
+const checkPiecesMoreThan0 = (piecesRemaining) => {
+   return piecesRemaining > 0;
+}
+
+const getRemainingLvl1Pieces = () => {
+   const level1PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 1;
+   }).length);
+
+   return 22 - level1PiecesUsed;
+}
+
+const getRemainingLvl2Pieces = () => {
+   const level2PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 2;
+   }).length);
+
+   return 18 - level2PiecesUsed;
+}
+
+const getRemainingLvl3Pieces = () => {
+   const level3PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 3;
+   }).length);
+
+   return 14 - level3PiecesUsed;
+}
+
+const getRemainingLvl4Pieces = () => {
+   const level4PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height === 4;
+   }).length);
+
+   return 10 - level4PiecesUsed;
+}
 
 
-const targetHeight = 1;
+console.log(getRemainingLvl4Pieces());
 
-console.log(boardArray.filter((piece) => {
-   return piece.height >= targetHeight;
-}).length)
+
+
+// const targetHeight = 1;
+
+// console.log(boardArray.filter((piece) => {
+//    return piece.height >= targetHeight;
+// }).length)
 
 
 // const passInTheHeight = (askedHeight) => {
