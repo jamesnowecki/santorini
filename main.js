@@ -41,8 +41,6 @@ const e5 = new GridSquare("e5", 0, "empty", ["d4", "d5", "e4"]);
 
 const boardArray = [a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5];
 
-
-
 //funcs to increase height of squares
 
 const printHeight = (gridSquare) => {
@@ -56,15 +54,18 @@ const buildOnSquare = (gridSquare) => {
    gridSquare.increaseHeight();
    theGridSquare.classList.add("height-" + gridSquare.height);
    printHeight(gridSquare);
-}
-
-const buildWhenClicked = (id) => {
-   const theGridID = id;
-   buildOnSquare(theGridID);
    calcRemainingBlocks();
 }
 
-
+const buildWhenClicked = (id) => {
+   calcRemainingBlocks();
+   const theGridID = id;
+   if (theGridID.occupant === "empty" && theGridID.height <= 3) {
+   buildOnSquare(theGridID);
+   } else {
+   return alert("Cannot build here");
+   }
+};
 
 //Return the remaining pieces
 
@@ -85,28 +86,24 @@ const calcRemainingBlocks = () => {
    const printLevel1Pieces = () => {
       const level1PiecesRemaining = (22 - level1PiecesUsed);
       const answer = document.getElementById('level-1-remaining');
-      console.log(answer);
       return answer.innerHTML = level1PiecesRemaining;
    };
    
    const printLevel2Pieces = () => {
       const level2PiecesRemaining = (18 - level2PiecesUsed);
       const answer = document.getElementById('level-2-remaining');
-      console.log(answer);
       return answer.innerHTML = level2PiecesRemaining;
    };
    
    const printLevel3Pieces = () => {
       const level3PiecesRemaining = (14 - level3PiecesUsed);
       const answer = document.getElementById('level-3-remaining');
-      console.log(answer);
       return answer.innerHTML = level3PiecesRemaining;
    };
    
    const printLevel4Pieces = () => {
       const level4PiecesRemaining = (10 - level4PiecesUsed);
       const answer = document.getElementById('level-4-remaining');
-      console.log(answer);
       return answer.innerHTML = level4PiecesRemaining;
    }
 
