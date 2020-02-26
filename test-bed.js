@@ -28,11 +28,11 @@ const c2 = new GridSquare("c2", 2, "empty", ["b1", "b2", "b3", "c1", "c3", "d1",
 const c3 = new GridSquare("c3", 2, "empty", ["b2", "b3", "b4", "c2", "c4", "d2", "d3", "d4"]);
 const c4 = new GridSquare("c4", 2, "empty", ["b3", "b4", "b5", "c3", "c5", "d3", "d4", "d5"]);
 const c5 = new GridSquare("c5", 2, "empty", ["b4", "b5", "c4", "d4", "d5"]);
-const d1 = new GridSquare("d1", 3, "empty", ["c1", "c2", "d2", "e1", "e2"]);
-const d2 = new GridSquare("d2", 3, "empty", ["c1", "c2", "c3", "d1", "d3", "e1", "e2", "e3"]);
-const d3 = new GridSquare("d3", 3, "empty", ["c2", "c3", "c4", "d2", "d4", "e2", "e3", "e4"]);
-const d4 = new GridSquare("d4", 3, "empty", ["c3", "c4", "c5", "d3", "d5", "e3", "e4", "e5"]);
-const d5 = new GridSquare("d5", 3, "empty", ["c4", "c5", "d4", "e4", "e5"]);
+const d1 = new GridSquare("d1", 4, "empty", ["c1", "c2", "d2", "e1", "e2"]);
+const d2 = new GridSquare("d2", 4, "empty", ["c1", "c2", "c3", "d1", "d3", "e1", "e2", "e3"]);
+const d3 = new GridSquare("d3", 4, "empty", ["c2", "c3", "c4", "d2", "d4", "e2", "e3", "e4"]);
+const d4 = new GridSquare("d4", 4, "empty", ["c3", "c4", "c5", "d3", "d5", "e3", "e4", "e5"]);
+const d5 = new GridSquare("d5", 4, "empty", ["c4", "c5", "d4", "e4", "e5"]);
 const e1 = new GridSquare("e1", 4, "empty", ["d1", "d2", "e2"]);
 const e2 = new GridSquare("e2", 4, "empty", ["d1", "d2", "d3", "e1", "e3"]);
 const e3 = new GridSquare("e3", 4, "empty", ["d2", "d3", "d4", "e2", "e4"]);
@@ -90,7 +90,7 @@ const getRemainingLvl4Pieces = () => {
    return 10 - level4PiecesUsed;
 }
 
-console.log(checkEnoughPieces(0))
+console.log(checkEnoughPieces(2))
 // const targetHeight = 1;
 
 // console.log(boardArray.filter((piece) => {
