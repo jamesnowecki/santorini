@@ -53,46 +53,6 @@ const e5 = new GridSquare("e5", 0, "empty", ["d4", "d5", "e4"]);
 
 const boardArray = [a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5];
 
-//funcs to increase height of squares
-
-const printHeight = (gridSquare) => {
-   const theGridSquare = document.getElementById(gridSquare.position);
-   theGridSquare.innerHTML = gridSquare.height;
-}
-
-const buildOnSquare = (gridSquare) => {
-   const theGridSquare = document.getElementById(gridSquare.position);
-   theGridSquare.classList.remove("height-" + gridSquare.height);
-   gridSquare.increaseHeight();
-   theGridSquare.classList.add("height-" + gridSquare.height);
-   printHeight(gridSquare);
-   calcRemainingBlocks();
-}
-
-const buildWhenClicked = (id) => {
-   calcRemainingBlocks();
-   const theGridID = id;
-   // if (theGridID.occupant === "empty" && theGridID.height <= 3) {
-   if (theGridID.occupant === "empty" && theGridID.height <= 3 && checkEnoughPieces(theGridID.height) === true) {
-   buildOnSquare(theGridID);
-   } else {
-   return alert("Cannot build here");
-   }
-};
-
-const checkEnoughPieces = (height) => {
-   if (height === 0) {
-      return checkPiecesMoreThan0(getRemainingLvl1Pieces());
-   } else if (height === 1) {
-      return checkPiecesMoreThan0(getRemainingLvl2Piece());
-   } else if (height === 2) {
-      return checkPiecesMoreThan0(getRemainingLvl3Pieces());
-   } else if (height === 3) {
-      return checkPiecesMoreThan0(getRemainingLvl4Pieces());
-   } 
-   return false;
-}
-
 const checkPiecesMoreThan0 = (piecesRemaining) => {
    return piecesRemaining > 0;
 }
@@ -127,6 +87,19 @@ const getRemainingLvl4Pieces = () => {
    }).length);
 
    return 10 - level4PiecesUsed;
+}
+
+const checkEnoughPieces = (height) => {
+   if (height === 0) {
+      return checkPiecesMoreThan0(getRemainingLvl1Pieces());
+   } else if (height === 1) {
+      return checkPiecesMoreThan0(getRemainingLvl2Pieces());
+   } else if (height === 2) {
+      return checkPiecesMoreThan0(getRemainingLvl3Pieces());
+   } else if (height === 3) {
+      return checkPiecesMoreThan0(getRemainingLvl4Pieces());
+   } 
+   return false;
 }
 //Return the remaining pieces
 
@@ -177,3 +150,29 @@ const calcRemainingBlocks = () => {
    printLevel3Pieces();
    printLevel4Pieces();
 }
+
+//funcs to increase height of squares
+
+const printHeight = (gridSquare) => {
+   const theGridSquare = document.getElementById(gridSquare.position);
+   theGridSquare.innerHTML = gridSquare.height;
+}
+
+const buildOnSquare = (gridSquare) => {
+   const theGridSquare = document.getElementById(gridSquare.position);
+   theGridSquare.classList.remove("height-" + gridSquare.height);
+   gridSquare.increaseHeight();
+   theGridSquare.classList.add("height-" + gridSquare.height);
+   printHeight(gridSquare);
+   calcRemainingBlocks();
+}
+
+const buildWhenClicked = (id) => {
+   calcRemainingBlocks();
+   const theGridID = id;
+   if (theGridID.occupant === "empty" && theGridID.height <= 3 && checkEnoughPieces(theGridID.height) === true) {
+   buildOnSquare(theGridID);
+   } else {
+   return alert("Cannot build here");
+   }
+};
