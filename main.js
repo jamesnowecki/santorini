@@ -6,12 +6,24 @@ class GridSquare {
       this.height = height;
       this.occupant = occupant;
       this.adjacencies = adjacencies;
-   }
+   };
 
    increaseHeight() {
-      this.height++
-   }
-}
+      this.height++;
+   };
+
+   occupiedByPlayer1() {
+      this.occupant == "player1Piece";
+   };
+
+   occupiedByPlayer2() {
+      this.occupant == "player2Piece";
+   };
+
+   clearTheSpace() {
+      this.occupant == "empty";
+   };
+};
 
 const a1 = new GridSquare("a1", 0, "empty", ["a2", "b1", "b2"]);
 const a2 = new GridSquare("a2", 0, "empty", ["a1", "a3", "b1", "b2", "b3"]);
@@ -41,7 +53,103 @@ const e5 = new GridSquare("e5", 0, "empty", ["d4", "d5", "e4"]);
 
 const boardArray = [a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5];
 
+const checkPiecesMoreThan0 = (piecesRemaining) => {
+   return piecesRemaining > 0;
+}
 
+const getRemainingLvl1Pieces = () => {
+   const level1PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 1;
+   }).length);
+
+   return 22 - level1PiecesUsed;
+}
+
+const getRemainingLvl2Pieces = () => {
+   const level2PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 2;
+   }).length);
+
+   return 18 - level2PiecesUsed;
+}
+
+const getRemainingLvl3Pieces = () => {
+   const level3PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 3;
+   }).length);
+
+   return 14 - level3PiecesUsed;
+}
+
+const getRemainingLvl4Pieces = () => {
+   const level4PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height === 4;
+   }).length);
+
+   return 10 - level4PiecesUsed;
+}
+
+const checkEnoughPieces = (height) => {
+   if (height === 0) {
+      return checkPiecesMoreThan0(getRemainingLvl1Pieces());
+   } else if (height === 1) {
+      return checkPiecesMoreThan0(getRemainingLvl2Pieces());
+   } else if (height === 2) {
+      return checkPiecesMoreThan0(getRemainingLvl3Pieces());
+   } else if (height === 3) {
+      return checkPiecesMoreThan0(getRemainingLvl4Pieces());
+   } 
+   return false;
+}
+//Return the remaining pieces
+
+const calcRemainingBlocks = () => {
+
+   const level1PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 1;
+   }).length);
+   
+   const level2PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 2;
+   }).length);
+   
+   const level3PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height >= 3;
+   }).length);
+   
+   const level4PiecesUsed = (boardArray.filter((piece) => {
+      return piece.height === 4;
+   }).length);
+   
+   const printLevel1Pieces = () => {
+      const level1PiecesRemaining = (22 - level1PiecesUsed);
+      const answer = document.getElementById('level-1-remaining');
+      return answer.innerHTML = level1PiecesRemaining;
+   };
+   
+   const printLevel2Pieces = () => {
+      const level2PiecesRemaining = (18 - level2PiecesUsed);
+      const answer = document.getElementById('level-2-remaining');
+      return answer.innerHTML = level2PiecesRemaining;
+   };
+   
+   const printLevel3Pieces = () => {
+      const level3PiecesRemaining = (14 - level3PiecesUsed);
+      const answer = document.getElementById('level-3-remaining');
+      return answer.innerHTML = level3PiecesRemaining;
+   };
+   
+   const printLevel4Pieces = () => {
+      const level4PiecesRemaining = (10 - level4PiecesUsed);
+      const answer = document.getElementById('level-4-remaining');
+      return answer.innerHTML = level4PiecesRemaining;
+   };
+
+   printLevel1Pieces();
+   printLevel2Pieces();
+   printLevel3Pieces();
+   printLevel4Pieces();
+}
 
 //funcs to increase height of squares
 
@@ -56,62 +164,15 @@ const buildOnSquare = (gridSquare) => {
    gridSquare.increaseHeight();
    theGridSquare.classList.add("height-" + gridSquare.height);
    printHeight(gridSquare);
-}
-
-const buildWhenClicked = (id) => {
-   const theGridID = id;
-   buildOnSquare(theGridID);
    calcRemainingBlocks();
 }
 
-
-
-//Return the remaining pieces
-
-const calcRemainingBlocks = () => {
-   const level1PiecesUsed = (boardArray.filter((piece) => {
-      return piece.height >= 1;
-   }).length);
-   const level2PiecesUsed = (boardArray.filter((piece) => {
-      return piece.height >= 2;
-   }).length);
-   const level3PiecesUsed = (boardArray.filter((piece) => {
-      return piece.height >= 3;
-   }).length);
-   const level4PiecesUsed = (boardArray.filter((piece) => {
-      return piece.height === 4;
-   }).length);
-   
-   const printLevel1Pieces = () => {
-      const level1PiecesRemaining = (22 - level1PiecesUsed);
-      const answer = document.getElementById('level-1-remaining');
-      console.log(answer);
-      return answer.innerHTML = level1PiecesRemaining;
-   };
-   
-   const printLevel2Pieces = () => {
-      const level2PiecesRemaining = (18 - level2PiecesUsed);
-      const answer = document.getElementById('level-2-remaining');
-      console.log(answer);
-      return answer.innerHTML = level2PiecesRemaining;
-   };
-   
-   const printLevel3Pieces = () => {
-      const level3PiecesRemaining = (14 - level3PiecesUsed);
-      const answer = document.getElementById('level-3-remaining');
-      console.log(answer);
-      return answer.innerHTML = level3PiecesRemaining;
-   };
-   
-   const printLevel4Pieces = () => {
-      const level4PiecesRemaining = (10 - level4PiecesUsed);
-      const answer = document.getElementById('level-4-remaining');
-      console.log(answer);
-      return answer.innerHTML = level4PiecesRemaining;
+const buildWhenClicked = (id) => {
+   calcRemainingBlocks();
+   const theGridID = id;
+   if (theGridID.occupant === "empty" && theGridID.height <= 3 && checkEnoughPieces(theGridID.height) === true) {
+   buildOnSquare(theGridID);
+   } else {
+   return alert("Cannot build here");
    }
-
-   printLevel1Pieces();
-   printLevel2Pieces();
-   printLevel3Pieces();
-   printLevel4Pieces();
-}
+};
