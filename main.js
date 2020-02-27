@@ -173,6 +173,18 @@ const buildWhenClicked = (id) => {
    if (theGridID.occupant === "empty" && theGridID.height <= 3 && checkEnoughPieces(theGridID.height) === true) {
    buildOnSquare(theGridID);
    } else {
-   return alert("Cannot build here");
+   return alert("Cannot build on an occupied square, a 4th-level square, or if there are not enough pieces of the required level");
    }
 };
+
+// move pieces around
+
+const triggerOccupationP1 = (gridSquare) => {
+   if (gridSquare.occupant === "empty" && gridSquare.height <= 3) {
+      const theGridSquare = document.getElementById(gridSquare.position);
+      theGridSquare.classList.add("occupied-P1");
+      gridSquare.occupiedByPlayer1();
+   } else {
+      return alert("Cannot move to a 4th-level square or to an occupied space")
+   }
+}

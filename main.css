@@ -1,50 +1,64 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
-    background-color: aquamarine;
-    margin: auto;
+  background-color: aquamarine;
+  margin: auto;
 }
 
 .game-grid {
-    width: 50vw;
-    height: 50vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 5px;
-    padding: 25px;
+  width: 50vw;
+  height: 50vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 5px;
+  padding: 25px;
 }
 
 button {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .height-0 {
-    background-color: yellowgreen;
+  background-color: yellowgreen;
 }
 
 .height-1 {
-    background-color: yellow;
+  background-color: yellow;
 }
 
 .height-2 {
-    background-color: orange;
+  background-color: orange;
 }
 
 .height-3 {
-    background-color: tomato;
+  background-color: tomato;
 }
 
 .height-4 {
-    background-color: rgb(68, 68, 248)
+  background-color: #4444f8;
+}
+
+.occupied-P1 {
+  background-color: #6b6b6b;
+  border-radius: 100%;
+}
+
+.occupied-P2 {
+  background-color: #fc29b6;
+  border-radius: 100%;
 }
 
 #turn-switch {
-    background-color: blanchedalmond;
-    width: 200px;
-    height: 100px;
+  background-color: blanchedalmond;
+  width: 200px;
+  height: 100px;
 }
+/*# sourceMappingURL=main.css.map */
