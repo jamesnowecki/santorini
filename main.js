@@ -188,3 +188,11 @@ const triggerOccupationP1 = (gridSquare) => {
       return alert("Cannot move to a 4th-level square or to an occupied space")
    }
 }
+
+const shiftDown = document.addEventListener('keydown', (event) => {
+   return event === true;
+});
+
+const shiftUp = document.addEventListener('keydown', (event) => {
+   return event === false;
+})
