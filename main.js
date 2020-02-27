@@ -190,9 +190,13 @@ const triggerOccupationP1 = (gridSquare) => {
 }
 
 const shiftDown = document.addEventListener('keydown', (event) => {
-   return event === true;
+   if (event.key == 'ShiftDown') {
+      return true;
+  };
 });
 
 const shiftUp = document.addEventListener('keydown', (event) => {
-   return event === false;
-})
+   if (event.key == 'ShiftUp') {
+      return false;
+  };
+});
