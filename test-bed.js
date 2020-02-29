@@ -42,21 +42,28 @@ const e5 = new GridSquare("e5", 4, "empty", ["d4", "d5", "e4"]);
 const boardArray = [a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5]
 
 
-const btn1 = document.getElementById("btn1");
-const answer = document.getElementById("answer");
-// const shiftKeyPressed = instanceOfMouseEvent.shiftKey;
+// const btn1 = document.getElementById("btn1");
+// const answer = document.getElementById("answer");
+// // const shiftKeyPressed = instanceOfMouseEvent.shiftKey;
 
-const checkShiftDown = () => {
-   if (event.shiftkey === true) {
-      return answer.innerHTML = "SHIFTED"
-   } return answer.innerHTML = "SHAFTED"
+// const checkShiftDown = () => {
+//    if (event.shiftkey === true) {
+//       return answer.innerHTML = "SHIFTED"
+//    } return answer.innerHTML = "SHAFTED"
+// }
+
+// btn1.addEventListener("click", checkShiftDown);
+
+
+let isItPlayer1Turn = true;
+
+const switchTurn = () => {
+   isItPlayer1Turn ? isItPlayer1Turn = false : isItPlayer1Turn = true; 
 }
 
-btn1.addEventListener("click", checkShiftDown);
-
-
-
-
+console.log(isItPlayer1Turn);
+switchTurn();
+console.log(isItPlayer1Turn);
 
 // const checkBuildOrPlace = (variable) => {
 //    if(shiftKeyPressed === true) {
