@@ -44,31 +44,18 @@ const boardArray = [a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, 
 
 // const btn1 = document.getElementById("btn1");
 // const answer = document.getElementById("answer");
-// // const shiftKeyPressed = instanceOfMouseEvent.shiftKey;
 
-// const checkShiftDown = () => {
-//    if (event.shiftkey === true) {
-//       return answer.innerHTML = "SHIFTED"
-//    } return answer.innerHTML = "SHAFTED"
-// }
-
-// btn1.addEventListener("click", checkShiftDown);
-
-
-let isItPlayer1Turn = true;
-
-const switchTurn = () => {
-   isItPlayer1Turn ? isItPlayer1Turn = false : isItPlayer1Turn = true; 
+const checkEnoughPieces = (height) => {
+   if (height === 0) {
+      return checkPiecesMoreThan0(getRemainingLvl1Pieces());
+   } else if (height === 1) {
+      return checkPiecesMoreThan0(getRemainingLvl2Pieces());
+   } else if (height === 2) {
+      return checkPiecesMoreThan0(getRemainingLvl3Pieces());
+   } else if (height === 3) {
+      return checkPiecesMoreThan0(getRemainingLvl4Pieces());
+   }
+   return false;
 }
 
-console.log(isItPlayer1Turn);
-switchTurn();
-console.log(isItPlayer1Turn);
-
-// const checkBuildOrPlace = (variable) => {
-//    if(shiftKeyPressed === true) {
-//       return answer.innerHTML = "Shifted" + variable;
-//    } else {
-//       return answer.innerHTML = "Not Shifted" + variable;
-//    }
-// }
+const checkEnoughPieces = 
