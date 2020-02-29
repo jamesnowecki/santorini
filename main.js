@@ -168,15 +168,10 @@ const buildOnSquare = (gridSquare) => {
 }
 
 const buildWhenClicked = (id) => {
-
-
    // Example to show shift click
-
-   if (isShiftDown) {
-      console.log("GREAT SUCCESSS!!!!!")
-   }
-
-
+   // if (isShiftDown) {
+   //    console.log("GREAT SUCCESSS!!!!!")
+   // }
    calcRemainingBlocks();
    const theGridID = id;
    if (theGridID.occupant === "empty" && theGridID.height <= 3 && checkEnoughPieces(theGridID.height) === true) {
@@ -197,8 +192,6 @@ const triggerOccupationP1 = (gridSquare) => {
       return alert("Cannot move to a 4th-level square or to an occupied space")
    }
 }
-
-
 
 // defines grid elements in DOM
 
@@ -230,57 +223,31 @@ const gsE5 = document.getElementById("e5");
 
 //Event listeners
 // Leftclick to build
-gsA1.addEventListener("click", () => buildWhenClicked(a1));
-gsA2.addEventListener("click", () => buildWhenClicked(a2));
-gsA3.addEventListener("click", () => buildWhenClicked(a3));
-gsA4.addEventListener("click", () => buildWhenClicked(a4));
-gsA5.addEventListener("click", () => buildWhenClicked(a5));
-gsB1.addEventListener("click", () => buildWhenClicked(b1));
-gsB2.addEventListener("click", () => buildWhenClicked(b2));
-gsB3.addEventListener("click", () => buildWhenClicked(b3));
-gsB4.addEventListener("click", () => buildWhenClicked(b4));
-gsB5.addEventListener("click", () => buildWhenClicked(b5));
-gsC1.addEventListener("click", () => buildWhenClicked(c1));
-gsC2.addEventListener("click", () => buildWhenClicked(c2));
-gsC3.addEventListener("click", () => buildWhenClicked(c3));
-gsC4.addEventListener("click", () => buildWhenClicked(c4));
-gsC5.addEventListener("click", () => buildWhenClicked(c5));
-gsD1.addEventListener("click", () => buildWhenClicked(d1));
-gsD2.addEventListener("click", () => buildWhenClicked(d2));
-gsD3.addEventListener("click", () => buildWhenClicked(d3));
-gsD4.addEventListener("click", () => buildWhenClicked(d4));
-gsD5.addEventListener("click", () => buildWhenClicked(d5));
-gsE1.addEventListener("click", () => buildWhenClicked(e1));
-gsE2.addEventListener("click", () => buildWhenClicked(e2));
-gsE3.addEventListener("click", () => buildWhenClicked(e3));
-gsE4.addEventListener("click", () => buildWhenClicked(e4));
-gsE5.addEventListener("click", () => buildWhenClicked(e5));
-
-// gsA1.addEventListener("click",  shiftKeyPressed(a1));
-// gsA2.addEventListener("click",  shiftKeyPressed(a2));
-// gsA3.addEventListener("click",  shiftKeyPressed(a3));
-// gsA4.addEventListener("click",  shiftKeyPressed(a4));
-// gsA5.addEventListener("click",  shiftKeyPressed(a5));
-// gsB1.addEventListener("click",  shiftKeyPressed(b1));
-// gsB2.addEventListener("click",  shiftKeyPressed(b2));
-// gsB3.addEventListener("click",  shiftKeyPressed(b3));
-// gsB4.addEventListener("click",  shiftKeyPressed(b4));
-// gsB5.addEventListener("click",  shiftKeyPressed(b5));
-// gsC1.addEventListener("click",  shiftKeyPressed(c1));
-// gsC2.addEventListener("click",  shiftKeyPressed(c2));
-// gsC3.addEventListener("click",  shiftKeyPressed(c3));
-// gsC4.addEventListener("click",  shiftKeyPressed(c4));
-// gsC5.addEventListener("click",  shiftKeyPressed(c5));
-// gsD1.addEventListener("click",  shiftKeyPressed(d1));
-// gsD2.addEventListener("click",  shiftKeyPressed(d2));
-// gsD3.addEventListener("click",  shiftKeyPressed(d3));
-// gsD4.addEventListener("click",  shiftKeyPressed(d4));
-// gsD5.addEventListener("click",  shiftKeyPressed(d5));
-// gsE1.addEventListener("click",  shiftKeyPressed(e1));
-// gsE2.addEventListener("click",  shiftKeyPressed(e2));
-// gsE3.addEventListener("click",  shiftKeyPressed(e3));
-// gsE4.addEventListener("click",  shiftKeyPressed(e4));
-// gsE5.addEventListener("click",  shiftKeyPressed(e5));
+gsA1.addEventListener("click", () => checkBuildOrPlace(a1));
+gsA2.addEventListener("click", () => checkBuildOrPlace(a2));
+gsA3.addEventListener("click", () => checkBuildOrPlace(a3));
+gsA4.addEventListener("click", () => checkBuildOrPlace(a4));
+gsA5.addEventListener("click", () => checkBuildOrPlace(a5));
+gsB1.addEventListener("click", () => checkBuildOrPlace(b1));
+gsB2.addEventListener("click", () => checkBuildOrPlace(b2));
+gsB3.addEventListener("click", () => checkBuildOrPlace(b3));
+gsB4.addEventListener("click", () => checkBuildOrPlace(b4));
+gsB5.addEventListener("click", () => checkBuildOrPlace(b5));
+gsC1.addEventListener("click", () => checkBuildOrPlace(c1));
+gsC2.addEventListener("click", () => checkBuildOrPlace(c2));
+gsC3.addEventListener("click", () => checkBuildOrPlace(c3));
+gsC4.addEventListener("click", () => checkBuildOrPlace(c4));
+gsC5.addEventListener("click", () => checkBuildOrPlace(c5));
+gsD1.addEventListener("click", () => checkBuildOrPlace(d1));
+gsD2.addEventListener("click", () => checkBuildOrPlace(d2));
+gsD3.addEventListener("click", () => checkBuildOrPlace(d3));
+gsD4.addEventListener("click", () => checkBuildOrPlace(d4));
+gsD5.addEventListener("click", () => checkBuildOrPlace(d5));
+gsE1.addEventListener("click", () => checkBuildOrPlace(e1));
+gsE2.addEventListener("click", () => checkBuildOrPlace(e2));
+gsE3.addEventListener("click", () => checkBuildOrPlace(e3));
+gsE4.addEventListener("click", () => checkBuildOrPlace(e4));
+gsE5.addEventListener("click", () => checkBuildOrPlace(e5));
 
 let isShiftDown = false;
 
@@ -298,11 +265,8 @@ const turnShiftOff = (event) => {
 }
 
 
-
-const shiftKeyPressed = instanceOfMouseEvent.shiftKey
-
 const checkBuildOrPlace = (gridSquare) => {
-   if (shiftKeyPressed === true) {
+   if (isShiftDown === true) {
       return triggerOccupationP1(gridSquare);
    } else {
       return buildWhenClicked(gridSquare);
