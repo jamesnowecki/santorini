@@ -98,7 +98,7 @@ const checkEnoughPieces = (height) => {
       return checkPiecesMoreThan0(getRemainingLvl3Pieces());
    } else if (height === 3) {
       return checkPiecesMoreThan0(getRemainingLvl4Pieces());
-   } 
+   }
    return false;
 }
 //Return the remaining pieces
@@ -108,37 +108,37 @@ const calcRemainingBlocks = () => {
    const level1PiecesUsed = (boardArray.filter((piece) => {
       return piece.height >= 1;
    }).length);
-   
+
    const level2PiecesUsed = (boardArray.filter((piece) => {
       return piece.height >= 2;
    }).length);
-   
+
    const level3PiecesUsed = (boardArray.filter((piece) => {
       return piece.height >= 3;
    }).length);
-   
+
    const level4PiecesUsed = (boardArray.filter((piece) => {
       return piece.height === 4;
    }).length);
-   
+
    const printLevel1Pieces = () => {
       const level1PiecesRemaining = (22 - level1PiecesUsed);
       const answer = document.getElementById('level-1-remaining');
       return answer.innerHTML = level1PiecesRemaining;
    };
-   
+
    const printLevel2Pieces = () => {
       const level2PiecesRemaining = (18 - level2PiecesUsed);
       const answer = document.getElementById('level-2-remaining');
       return answer.innerHTML = level2PiecesRemaining;
    };
-   
+
    const printLevel3Pieces = () => {
       const level3PiecesRemaining = (14 - level3PiecesUsed);
       const answer = document.getElementById('level-3-remaining');
       return answer.innerHTML = level3PiecesRemaining;
    };
-   
+
    const printLevel4Pieces = () => {
       const level4PiecesRemaining = (10 - level4PiecesUsed);
       const answer = document.getElementById('level-4-remaining');
@@ -168,12 +168,16 @@ const buildOnSquare = (gridSquare) => {
 }
 
 const buildWhenClicked = (id) => {
+   // Example to show shift click
+   // if (isShiftDown) {
+   //    console.log("GREAT SUCCESSS!!!!!")
+   // }
    calcRemainingBlocks();
    const theGridID = id;
    if (theGridID.occupant === "empty" && theGridID.height <= 3 && checkEnoughPieces(theGridID.height) === true) {
-   buildOnSquare(theGridID);
+      buildOnSquare(theGridID);
    } else {
-   return alert("Cannot build on an occupied square, a 4th-level square, or if there are not enough pieces of the required level");
+      return alert("Cannot build on an occupied square, a 4th-level square, or if there are not enough pieces of the required level");
    }
 };
 
@@ -186,5 +190,85 @@ const triggerOccupationP1 = (gridSquare) => {
       gridSquare.occupiedByPlayer1();
    } else {
       return alert("Cannot move to a 4th-level square or to an occupied space")
+   }
+}
+
+// defines grid elements in DOM
+
+const gsA1 = document.getElementById("a1");
+const gsA2 = document.getElementById("a2");
+const gsA3 = document.getElementById("a3");
+const gsA4 = document.getElementById("a4");
+const gsA5 = document.getElementById("a5");
+const gsB1 = document.getElementById("b1");
+const gsB2 = document.getElementById("b2");
+const gsB3 = document.getElementById("b3");
+const gsB4 = document.getElementById("b4");
+const gsB5 = document.getElementById("b5");
+const gsC1 = document.getElementById("c1");
+const gsC2 = document.getElementById("c2");
+const gsC3 = document.getElementById("c3");
+const gsC4 = document.getElementById("c4");
+const gsC5 = document.getElementById("c5");
+const gsD1 = document.getElementById("d1");
+const gsD2 = document.getElementById("d2");
+const gsD3 = document.getElementById("d3");
+const gsD4 = document.getElementById("d4");
+const gsD5 = document.getElementById("d5");
+const gsE1 = document.getElementById("e1");
+const gsE2 = document.getElementById("e2");
+const gsE3 = document.getElementById("e3");
+const gsE4 = document.getElementById("e4");
+const gsE5 = document.getElementById("e5");
+
+//Event listeners
+// Leftclick to build
+gsA1.addEventListener("click", () => checkBuildOrPlace(a1));
+gsA2.addEventListener("click", () => checkBuildOrPlace(a2));
+gsA3.addEventListener("click", () => checkBuildOrPlace(a3));
+gsA4.addEventListener("click", () => checkBuildOrPlace(a4));
+gsA5.addEventListener("click", () => checkBuildOrPlace(a5));
+gsB1.addEventListener("click", () => checkBuildOrPlace(b1));
+gsB2.addEventListener("click", () => checkBuildOrPlace(b2));
+gsB3.addEventListener("click", () => checkBuildOrPlace(b3));
+gsB4.addEventListener("click", () => checkBuildOrPlace(b4));
+gsB5.addEventListener("click", () => checkBuildOrPlace(b5));
+gsC1.addEventListener("click", () => checkBuildOrPlace(c1));
+gsC2.addEventListener("click", () => checkBuildOrPlace(c2));
+gsC3.addEventListener("click", () => checkBuildOrPlace(c3));
+gsC4.addEventListener("click", () => checkBuildOrPlace(c4));
+gsC5.addEventListener("click", () => checkBuildOrPlace(c5));
+gsD1.addEventListener("click", () => checkBuildOrPlace(d1));
+gsD2.addEventListener("click", () => checkBuildOrPlace(d2));
+gsD3.addEventListener("click", () => checkBuildOrPlace(d3));
+gsD4.addEventListener("click", () => checkBuildOrPlace(d4));
+gsD5.addEventListener("click", () => checkBuildOrPlace(d5));
+gsE1.addEventListener("click", () => checkBuildOrPlace(e1));
+gsE2.addEventListener("click", () => checkBuildOrPlace(e2));
+gsE3.addEventListener("click", () => checkBuildOrPlace(e3));
+gsE4.addEventListener("click", () => checkBuildOrPlace(e4));
+gsE5.addEventListener("click", () => checkBuildOrPlace(e5));
+
+let isShiftDown = false;
+
+window.addEventListener("keydown", (event) => turnShiftOn(event))
+window.addEventListener("keyup", (event) => turnShiftOff(event))
+
+
+// shiftclick to place piece
+const turnShiftOn = (event) => {
+   event.shiftKey ? isShiftDown = true : null;
+}
+
+const turnShiftOff = (event) => {
+   event.key === "Shift" ? isShiftDown = false : null;
+}
+
+
+const checkBuildOrPlace = (gridSquare) => {
+   if (isShiftDown === true) {
+      return triggerOccupationP1(gridSquare);
+   } else {
+      return buildWhenClicked(gridSquare);
    }
 }
