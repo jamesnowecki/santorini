@@ -235,6 +235,7 @@ const buildOnSquare = (gridSquare) => {
    theGridSquare.classList.add("height-" + gridSquare.height);
    printHeight(gridSquare);
    calcRemainingBlocks();
+   clearLegality();
 };
 
 const buildWhenClicked = (id) => {
@@ -261,7 +262,7 @@ const triggerOccupationP1 = (gridSquare) => {
    };
 };
 
-//Funcs to display and undisplay legal build squares
+//Funcs to display and undisplay legal build squares and moves
 
 const translateStringToVariable = (stringGridSquare) => {
    return adjacencyObject[stringGridSquare];
@@ -280,12 +281,11 @@ const checkLegalBuilds = (gridSquare) => {
 };
 
 const filterOutIllegalBuilds = (pieceToBuildGridID) => {
-   const variableAdjacencyArray = getAdjacencyArray(pieceToBuildGridID)
+   const variableAdjacencyArray = getAdjacencyArray(pieceToBuildGridID);
    return variableAdjacencyArray.filter(checkLegalBuilds);
-}
+};
 
 const addLegalClass = (gridSquare) => {
-   console.log(gridSquare);
    const theGridSquare = document.getElementById(gridSquare.position);
    return theGridSquare.classList.add('legal-choice');
 };
@@ -300,6 +300,25 @@ const displayLegalBuilds = (lastMovedPieceLocation) => {
    return legalChoicesArray.forEach(addLegalClass);
 };
 
+const checkLegalMoves = (gridSquare, heightOfPiece) => {
+   if(gridSquare.height != 4 && gridSquare.occupant === "empty" && gridSquare.height <= (heightOfPiece + 1)) {
+      return true;
+   } return false;
+};
+
+const filterOutIllegalMoves = (pieceToMove) => {
+   const variableAdjacencyArray = getAdjacencyArray(pieceToMove);
+   return variableAdjacencyArray.filter(squares => checkLegalMoves(squares, pieceToMove.height));
+};
+
+const displayLegalMoves = (pieceLocation) => {
+   const legalChoicesArray = filterOutIllegalMoves(pieceLocation);
+   return legalChoicesArray.forEach(addLegalClass);
+};
+
+const clearLegality = () => {
+   return boardArray.forEach(removeLegalClass);
+};
 
 // defines grid elements in DOM
 
