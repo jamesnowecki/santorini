@@ -79,7 +79,7 @@ const adjacencyObject = {
    "e3": e3,
    "e4": e4,
    "e5": e5,
-}
+};
 
 // Turn checking and switching:
 
@@ -89,7 +89,7 @@ const switchTurn = () => {
    isItPlayer1Turn ? isItPlayer1Turn = false : isItPlayer1Turn = true; 
 };
 
-const turnNotifier = document.getElementById("turn-tracker");
+// const turnNotifier = document.getElementById('turn-tracker');
 
 const displayTurnNotifier = () => {
    if (isItPlayer1Turn = true) {
@@ -98,7 +98,7 @@ const displayTurnNotifier = () => {
 };
 
 // Storage variable for last place a piece was placed (e.g. current piece to perform build action)
-let pieceToBuild = pieceToBuild;
+let pieceToBuild;
 
 
 // Piece counting
@@ -254,6 +254,8 @@ const triggerOccupationP1 = (gridSquare) => {
       const theGridSquare = document.getElementById(gridSquare.position);
       theGridSquare.classList.add("occupied-P1");
       gridSquare.occupiedByPlayer1();
+      // let pieceToBuild = gridSquare;
+      displayAsLegal(gridSquare);
    } else {
       return alert("Cannot move to a 4th-level square or to an occupied space")
    };
@@ -261,25 +263,31 @@ const triggerOccupationP1 = (gridSquare) => {
 
 //Funcs to display and undisplay legal build squares
 
+const translateStringToVariable = (stringGridSquare) => {
+   return adjacencyObject[stringGridSquare];
+};
+
 const getAdjacencyArray = (pieceToBuildGridID) => {
    const stringAdjacencyArray = pieceToBuildGridID.adjacencies;
-
+   const variableAdjacencyArray = stringAdjacencyArray.map(translateStringToVariable);
+   return variableAdjacencyArray;
 };
 
 const addLegalClass = (gridSquare) => {
-   const theSquare = document.getElementById(gridSquare.position);
-   return theSquare.classList.add("legal-choice");
+   console.log(gridSquare);
+   const theGridSquare = document.getElementById(gridSquare.position);
+   return theGridSquare.classList.add('legal-choice');
 };
 
 const removeLegalClass = (gridSquare) => {
-   const theSquare = document.getElementById(gridSquare.position);
-   return theSquare.classList.remove("legal-choice");
-}
+   const theGridSquare = document.getElementById(gridSquare.position);
+   return theGridSquare.classList.remove('legal-choice');
+};
 
 const displayAsLegal = (lastMovedPieceLocation) => {
    const legalChoicesArray = getAdjacencyArray(lastMovedPieceLocation);
-   return legalChoicesArray.forEach(addLegalClass());
-}
+   return legalChoicesArray.forEach(addLegalClass);
+};
 
 
 // defines grid elements in DOM
