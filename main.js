@@ -257,7 +257,6 @@ const triggerOccupationP1 = (gridSquare) => {
       gridSquare.occupiedByPlayer1();
       let pieceToBuild = gridSquare;
       displayLegalBuilds(pieceToBuild);
-      console.log(pieceToBuild);
    } else {
       return alert("Cannot move to a 4th-level square or to an occupied space")
    };
