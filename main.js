@@ -100,6 +100,10 @@ const displayTurnNotifier = () => {
 // Storage variable for last place a piece was placed (e.g. current piece to perform build action)
 let pieceToBuild;
 
+//Functions to check and complete the deployment phase
+
+
+
 
 // Piece counting
 
