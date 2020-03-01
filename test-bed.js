@@ -45,34 +45,41 @@ const boardArray = [a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, 
 // const btn1 = document.getElementById("btn1");
 // const answer = document.getElementById("answer");
 
-const checkEnoughPieces = (height) => {
-   if (height === 0) {
-      return checkPiecesMoreThan0(getRemainingLvl1Pieces());
-   } else if (height === 1) {
-      return checkPiecesMoreThan0(getRemainingLvl2Pieces());
-   } else if (height === 2) {
-      return checkPiecesMoreThan0(getRemainingLvl3Pieces());
-   } else if (height === 3) {
-      return checkPiecesMoreThan0(getRemainingLvl4Pieces());
-   }
-   return false;
+// const checkEnoughPieces = (height) => {
+//    if (height === 0) {
+//       return checkPiecesMoreThan0(getRemainingLvl1Pieces());
+//    } else if (height === 1) {
+//       return checkPiecesMoreThan0(getRemainingLvl2Pieces());
+//    } else if (height === 2) {
+//       return checkPiecesMoreThan0(getRemainingLvl3Pieces());
+//    } else if (height === 3) {
+//       return checkPiecesMoreThan0(getRemainingLvl4Pieces());
+//    }
+//    return false;
+// }
+
+// const checkEnoughPieces = (height) => {
+//    switch(height) {
+//       case height === 0:
+//          checkPiecesMoreThan0(getRemainingLvl1Pieces());
+//       break;
+//       case height === 1:
+//          checkPiecesMoreThan0(getRemainingLvl2Pieces());
+//       break;
+//       case height === 2:
+//          checkPiecesMoreThan0(getRemainingLvl3Pieces());
+//       break;
+//       case height ===3:
+//          checkPiecesMoreThan0(getRemainingLvl4Pieces());
+//       break;
+//       default:
+//          false;
+//    }
+// }
+
+
+const getAdjacencyArray = (pieceToBuildGridID) => {
+   return pieceToBuildGridID.adjacencies;
 }
 
-const checkEnoughPieces = (height) => {
-   switch(height) {
-      case height === 0:
-         checkPiecesMoreThan0(getRemainingLvl1Pieces());
-      break;
-      case height === 1:
-         checkPiecesMoreThan0(getRemainingLvl2Pieces());
-      break;
-      case height === 2:
-         checkPiecesMoreThan0(getRemainingLvl3Pieces());
-      break;
-      case height ===3:
-         checkPiecesMoreThan0(getRemainingLvl4Pieces());
-      break;
-      default:
-         false;
-   }
-}
+console.log(getAdjacencyArray(c3));

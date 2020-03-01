@@ -53,16 +53,59 @@ const e5 = new GridSquare("e5", 0, "empty", ["d4", "d5", "e4"]);
 
 const boardArray = [a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5];
 
+const adjacencyObject = {
+   "a1": a1,
+   "a2": a2,
+   "a3": a3,
+   "a4": a4,
+   "a5": a5,
+   "b1": b1,
+   "b2": b2,
+   "b3": b3,
+   "b4": b4,
+   "b5": b5,
+   "c1": c1,
+   "c2": c2,
+   "c3": c3,
+   "c4": c4,
+   "c5": c5,
+   "d1": d1,
+   "d2": d2,
+   "d3": d3,
+   "d4": d4,
+   "d5": d5,
+   "e1": e1,
+   "e2": e2,
+   "e3": e3,
+   "e4": e4,
+   "e5": e5,
+}
+
+// Turn checking and switching:
+
 let isItPlayer1Turn = true;
 
 const switchTurn = () => {
    isItPlayer1Turn ? isItPlayer1Turn = false : isItPlayer1Turn = true; 
-}
+};
 
+const turnNotifier = document.getElementById("turn-tracker");
+
+const displayTurnNotifier = () => {
+   if (isItPlayer1Turn = true) {
+      turnNotifier.innerHTML = "Player 1's turn";
+   }  turnNotifier.innerHTML = "Player 2's turn";
+};
+
+// Storage variable for last place a piece was placed (e.g. current piece to perform build action)
+let pieceToBuild = pieceToBuild;
+
+
+// Piece counting
 
 const checkPiecesMoreThan0 = (piecesRemaining) => {
    return piecesRemaining > 0;
-}
+};
 
 const getRemainingLvl1Pieces = () => {
    const level1PiecesUsed = (boardArray.filter((piece) => {
@@ -70,7 +113,7 @@ const getRemainingLvl1Pieces = () => {
    }).length);
 
    return 22 - level1PiecesUsed;
-}
+};
 
 const getRemainingLvl2Pieces = () => {
    const level2PiecesUsed = (boardArray.filter((piece) => {
@@ -78,7 +121,7 @@ const getRemainingLvl2Pieces = () => {
    }).length);
 
    return 18 - level2PiecesUsed;
-}
+};
 
 const getRemainingLvl3Pieces = () => {
    const level3PiecesUsed = (boardArray.filter((piece) => {
@@ -86,7 +129,7 @@ const getRemainingLvl3Pieces = () => {
    }).length);
 
    return 14 - level3PiecesUsed;
-}
+};
 
 const getRemainingLvl4Pieces = () => {
    const level4PiecesUsed = (boardArray.filter((piece) => {
@@ -94,7 +137,7 @@ const getRemainingLvl4Pieces = () => {
    }).length);
 
    return 10 - level4PiecesUsed;
-}
+};
 
 const checkEnoughPieces = (height) => {
    if (height === 0) {
@@ -107,7 +150,7 @@ const checkEnoughPieces = (height) => {
       return checkPiecesMoreThan0(getRemainingLvl4Pieces());
    }
    return false;
-}
+};
 
 // const checkEnoughPieces = (height) => {
 //    switch(height) {
@@ -127,6 +170,7 @@ const checkEnoughPieces = (height) => {
 //          false;
 //    }
 // }
+
 //Return the remaining pieces
 
 const calcRemainingBlocks = () => {
@@ -175,14 +219,14 @@ const calcRemainingBlocks = () => {
    printLevel2Pieces();
    printLevel3Pieces();
    printLevel4Pieces();
-}
+};
 
 //funcs to increase height of squares
 
 const printHeight = (gridSquare) => {
    const theGridSquare = document.getElementById(gridSquare.position);
    theGridSquare.innerHTML = gridSquare.height;
-}
+};
 
 const buildOnSquare = (gridSquare) => {
    const theGridSquare = document.getElementById(gridSquare.position);
@@ -191,20 +235,16 @@ const buildOnSquare = (gridSquare) => {
    theGridSquare.classList.add("height-" + gridSquare.height);
    printHeight(gridSquare);
    calcRemainingBlocks();
-}
+};
 
 const buildWhenClicked = (id) => {
-   // Example to show shift click
-   // if (isShiftDown) {
-   //    console.log("GREAT SUCCESSS!!!!!")
-   // }
    calcRemainingBlocks();
    const theGridID = id;
    if (theGridID.occupant === "empty" && theGridID.height <= 3 && checkEnoughPieces(theGridID.height) === true) {
       buildOnSquare(theGridID);
    } else {
       return alert("Cannot build on an occupied square, a 4th-level square, or if there are not enough pieces of the required level");
-   }
+   };
 };
 
 // move pieces around
@@ -216,8 +256,31 @@ const triggerOccupationP1 = (gridSquare) => {
       gridSquare.occupiedByPlayer1();
    } else {
       return alert("Cannot move to a 4th-level square or to an occupied space")
-   }
+   };
+};
+
+//Funcs to display and undisplay legal build squares
+
+const getAdjacencyArray = (pieceToBuildGridID) => {
+   const stringAdjacencyArray = pieceToBuildGridID.adjacencies;
+
+};
+
+const addLegalClass = (gridSquare) => {
+   const theSquare = document.getElementById(gridSquare.position);
+   return theSquare.classList.add("legal-choice");
+};
+
+const removeLegalClass = (gridSquare) => {
+   const theSquare = document.getElementById(gridSquare.position);
+   return theSquare.classList.remove("legal-choice");
 }
+
+const displayAsLegal = (lastMovedPieceLocation) => {
+   const legalChoicesArray = getAdjacencyArray(lastMovedPieceLocation);
+   return legalChoicesArray.forEach(addLegalClass());
+}
+
 
 // defines grid elements in DOM
 
@@ -277,24 +340,23 @@ gsE5.addEventListener("click", () => checkBuildOrPlace(e5));
 
 let isShiftDown = false;
 
-window.addEventListener("keydown", (event) => turnShiftOn(event))
-window.addEventListener("keyup", (event) => turnShiftOff(event))
+window.addEventListener("keydown", (event) => turnShiftOn(event));
+window.addEventListener("keyup", (event) => turnShiftOff(event));
 
 
 // shiftclick to place piece
 const turnShiftOn = (event) => {
    event.shiftKey ? isShiftDown = true : null;
-}
+};
 
 const turnShiftOff = (event) => {
    event.key === "Shift" ? isShiftDown = false : null;
-}
-
+};
 
 const checkBuildOrPlace = (gridSquare) => {
    if (isShiftDown === true) {
       return triggerOccupationP1(gridSquare);
    } else {
       return buildWhenClicked(gridSquare);
-   }
-}
+   };
+};
