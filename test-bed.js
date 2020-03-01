@@ -58,4 +58,21 @@ const checkEnoughPieces = (height) => {
    return false;
 }
 
-const checkEnoughPieces = 
+const checkEnoughPieces = (height) => {
+   switch(height) {
+      case height === 0:
+         checkPiecesMoreThan0(getRemainingLvl1Pieces());
+      break;
+      case height === 1:
+         checkPiecesMoreThan0(getRemainingLvl2Pieces());
+      break;
+      case height === 2:
+         checkPiecesMoreThan0(getRemainingLvl3Pieces());
+      break;
+      case height ===3:
+         checkPiecesMoreThan0(getRemainingLvl4Pieces());
+      break;
+      default:
+         false;
+   }
+}
