@@ -255,7 +255,7 @@ const triggerOccupationP1 = (gridSquare) => {
       theGridSquare.classList.add("occupied-P1");
       gridSquare.occupiedByPlayer1();
       // let pieceToBuild = gridSquare;
-      displayAsLegal(gridSquare);
+      displayLegalBuilds(gridSquare);
    } else {
       return alert("Cannot move to a 4th-level square or to an occupied space")
    };
@@ -273,6 +273,17 @@ const getAdjacencyArray = (pieceToBuildGridID) => {
    return variableAdjacencyArray;
 };
 
+const checkLegalBuilds = (gridSquare) => {
+   if (gridSquare.height < 4 && gridSquare.occupant === "empty" && checkEnoughPieces(gridSquare.height) === true) {
+      return true;
+   } return false;
+};
+
+const filterOutIllegalBuilds = (pieceToBuildGridID) => {
+   const variableAdjacencyArray = getAdjacencyArray(pieceToBuildGridID)
+   return variableAdjacencyArray.filter(checkLegalBuilds);
+}
+
 const addLegalClass = (gridSquare) => {
    console.log(gridSquare);
    const theGridSquare = document.getElementById(gridSquare.position);
@@ -284,8 +295,8 @@ const removeLegalClass = (gridSquare) => {
    return theGridSquare.classList.remove('legal-choice');
 };
 
-const displayAsLegal = (lastMovedPieceLocation) => {
-   const legalChoicesArray = getAdjacencyArray(lastMovedPieceLocation);
+const displayLegalBuilds = (lastMovedPieceLocation) => {
+   const legalChoicesArray = filterOutIllegalBuilds(lastMovedPieceLocation);
    return legalChoicesArray.forEach(addLegalClass);
 };
 
