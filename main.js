@@ -255,8 +255,9 @@ const triggerOccupationP1 = (gridSquare) => {
       const theGridSquare = document.getElementById(gridSquare.position);
       theGridSquare.classList.add("occupied-P1");
       gridSquare.occupiedByPlayer1();
-      // let pieceToBuild = gridSquare;
-      displayLegalBuilds(gridSquare);
+      let pieceToBuild = gridSquare;
+      displayLegalBuilds(pieceToBuild);
+      console.log(pieceToBuild);
    } else {
       return alert("Cannot move to a 4th-level square or to an occupied space")
    };
