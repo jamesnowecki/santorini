@@ -101,9 +101,11 @@ const turnNotifier = document.getElementById('turn-tracker');
 
 const displayTurnNotifier = () => {
    if (isItPlayer1Turn) {
-      turnNotifier.innerHTML = "Player 1's turn";
+      turnNotifier.innerHTML = "";
+      return turnNotifier.innerHTML = "Player 1's turn";
    }
-   turnNotifier.innerHTML = "Player 2's turn";
+      turnNotifier.innerHTML = "";
+      return turnNotifier.innerHTML = "Player 2's turn";
 };
 
 // Storage variable for last place a piece was placed (e.g. current piece to perform build action); piece selected to move
