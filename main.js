@@ -97,8 +97,10 @@ const displayTurnNotifier = () => {
    }  turnNotifier.innerHTML = "Player 2's turn";
 };
 
-// Storage variable for last place a piece was placed (e.g. current piece to perform build action)
+// Storage variable for last place a piece was placed (e.g. current piece to perform build action); piece selected to move
 let pieceToBuild;
+
+let pieceChosenToMove;
 
 //Functions to check and complete the deployment phase
 
@@ -254,17 +256,29 @@ const buildWhenClicked = (id) => {
 
 // move pieces around
 
-const triggerOccupationP1 = (gridSquare) => {
+const triggerOccupation = (gridSquare) => {
    if (gridSquare.occupant === "empty" && gridSquare.height <= 3) {
-      const theGridSquare = document.getElementById(gridSquare.position);
-      theGridSquare.classList.add("occupied-P1");
-      gridSquare.occupiedByPlayer1();
+      // const theGridSquare = document.getElementById(gridSquare.position);
+      // theGridSquare.classList.add("occupied-P1");
+      // gridSquare.occupiedByPlayer1();
+      decideWhoOccupies(gridSquare);
       let pieceToBuild = gridSquare;
       displayLegalBuilds(pieceToBuild);
    } else {
       return alert("Cannot move to a 4th-level square or to an occupied space")
    };
 };
+
+const decideWhoOccupies = (gridSquare) => {
+   const theGridSquare = document.getElementById(gridSquare.position);
+   if (isItPlayer1Turn === true) {
+      theGridSquare.classList.add("occupied-P1");
+      gridSquare.occupiedByPlayer1();
+   } else { 
+      theGridSquare.classList.add("occupied-P2");
+      gridSquare.occupiedByPlayer2();
+   }
+}
 
 //Funcs to display and undisplay legal build squares and moves
 
@@ -397,7 +411,7 @@ const turnShiftOff = (event) => {
 
 const checkBuildOrPlace = (gridSquare) => {
    if (isShiftDown === true) {
-      return triggerOccupationP1(gridSquare);
+      return triggerOccupation(gridSquare);
    } else {
       return buildWhenClicked(gridSquare);
    };
