@@ -86,19 +86,34 @@ const adjacencyObject = {
 let isItPlayer1Turn = true;
 
 const switchTurn = () => {
-   isItPlayer1Turn ? isItPlayer1Turn = false : isItPlayer1Turn = true; 
+   isItPlayer1Turn = !isItPlayer1Turn;
 };
 
-// const turnNotifier = document.getElementById('turn-tracker');
+// const switchTurn = (whosTurn) => {
+//    if (wosTurn === true) {
+//       let whosTurn = false; 
+//    } else {
+//       let whosTurn = true;
+//    }
+// }
+
+const turnNotifier = document.getElementById('turn-tracker');
 
 const displayTurnNotifier = () => {
-   if (isItPlayer1Turn = true) {
+   if (isItPlayer1Turn) {
       turnNotifier.innerHTML = "Player 1's turn";
-   }  turnNotifier.innerHTML = "Player 2's turn";
+   }
+   turnNotifier.innerHTML = "Player 2's turn";
 };
 
-// Storage variable for last place a piece was placed (e.g. current piece to perform build action)
+// Storage variable for last place a piece was placed (e.g. current piece to perform build action); piece selected to move
 let pieceToBuild;
+
+let pieceChosenToMove;
+
+//Functions to check and complete the deployment phase
+
+
 
 
 // Piece counting
@@ -236,9 +251,14 @@ const buildOnSquare = (gridSquare) => {
    printHeight(gridSquare);
    calcRemainingBlocks();
    clearLegality();
+   console.log(isItPlayer1Turn);
+   switchTurn();
+   console.log(isItPlayer1Turn);
+   displayTurnNotifier();
 };
 
 const buildWhenClicked = (id) => {
+   console.log(isItPlayer1Turn)
    calcRemainingBlocks();
    const theGridID = id;
    if (theGridID.occupant === "empty" && theGridID.height <= 3 && checkEnoughPieces(theGridID.height) === true) {
@@ -250,17 +270,32 @@ const buildWhenClicked = (id) => {
 
 // move pieces around
 
-const triggerOccupationP1 = (gridSquare) => {
+const triggerOccupation = (gridSquare) => {
+   console.log(isItPlayer1Turn);
    if (gridSquare.occupant === "empty" && gridSquare.height <= 3) {
-      const theGridSquare = document.getElementById(gridSquare.position);
-      theGridSquare.classList.add("occupied-P1");
-      gridSquare.occupiedByPlayer1();
-      // let pieceToBuild = gridSquare;
-      displayLegalBuilds(gridSquare);
+      // const theGridSquare = document.getElementById(gridSquare.position);
+      // theGridSquare.classList.add("occupied-P1");
+      // gridSquare.occupiedByPlayer1();
+      decideWhoOccupies(gridSquare);
+      let pieceToBuild = gridSquare;
+      console.log(pieceToBuild);
+      displayLegalBuilds(pieceToBuild);
    } else {
       return alert("Cannot move to a 4th-level square or to an occupied space")
    };
 };
+
+const decideWhoOccupies = (gridSquare) => {
+   console.log(isItPlayer1Turn);
+   const theGridSquare = document.getElementById(gridSquare.position);
+   if (isItPlayer1Turn) {
+      theGridSquare.classList.add("occupied-P1");
+      gridSquare.occupiedByPlayer1();
+   } else {
+      theGridSquare.classList.add("occupied-P2");
+      gridSquare.occupiedByPlayer2();
+   }
+}
 
 //Funcs to display and undisplay legal build squares and moves
 
@@ -277,7 +312,8 @@ const getAdjacencyArray = (pieceToBuildGridID) => {
 const checkLegalBuilds = (gridSquare) => {
    if (gridSquare.height < 4 && gridSquare.occupant === "empty" && checkEnoughPieces(gridSquare.height) === true) {
       return true;
-   } return false;
+   }
+   return false;
 };
 
 const filterOutIllegalBuilds = (pieceToBuildGridID) => {
@@ -301,9 +337,10 @@ const displayLegalBuilds = (lastMovedPieceLocation) => {
 };
 
 const checkLegalMoves = (gridSquare, heightOfPiece) => {
-   if(gridSquare.height != 4 && gridSquare.occupant === "empty" && gridSquare.height <= (heightOfPiece + 1)) {
+   if (gridSquare.height != 4 && gridSquare.occupant === "empty" && gridSquare.height <= (heightOfPiece + 1)) {
       return true;
-   } return false;
+   }
+   return false;
 };
 
 const filterOutIllegalMoves = (pieceToMove) => {
@@ -391,9 +428,23 @@ const turnShiftOff = (event) => {
    event.key === "Shift" ? isShiftDown = false : null;
 };
 
+let isCtrlDown = false;
+
+window.addEventListener("keydown", (event) => turnCtrlOn(event));
+window.addEventListener("keyup", (event) => turnCtrlOff(event));
+
+const turnCtrlOn = (event) => {
+   event.ctrlKey ? isCtrlDown = true : null;
+};
+
+const turnCtrlOff = (event) => {
+   event.key === "Ctrl" ? isCtrlDown = false : null;
+};
+
+
 const checkBuildOrPlace = (gridSquare) => {
-   if (isShiftDown === true) {
-      return triggerOccupationP1(gridSquare);
+   if (isShiftDown) {
+      return triggerOccupation(gridSquare);
    } else {
       return buildWhenClicked(gridSquare);
    };
