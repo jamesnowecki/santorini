@@ -100,7 +100,7 @@ const switchTurn = () => {
 const turnNotifier = document.getElementById('turn-tracker');
 
 const displayTurnNotifier = () => {
-   if (isItPlayer1Turn = true) {
+   if (isItPlayer1Turn) {
       turnNotifier.innerHTML = "Player 1's turn";
    }
    turnNotifier.innerHTML = "Player 2's turn";
@@ -288,7 +288,7 @@ const triggerOccupation = (gridSquare) => {
 const decideWhoOccupies = (gridSquare) => {
    console.log(isItPlayer1Turn);
    const theGridSquare = document.getElementById(gridSquare.position);
-   if (isItPlayer1Turn === true) {
+   if (isItPlayer1Turn) {
       theGridSquare.classList.add("occupied-P1");
       gridSquare.occupiedByPlayer1();
    } else {
@@ -443,7 +443,7 @@ const turnCtrlOff = (event) => {
 
 
 const checkBuildOrPlace = (gridSquare) => {
-   if (isShiftDown === true) {
+   if (isShiftDown) {
       return triggerOccupation(gridSquare);
    } else {
       return buildWhenClicked(gridSquare);
