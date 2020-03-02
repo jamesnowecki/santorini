@@ -90,18 +90,26 @@ const boardArray = [a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, 
 // }
 
 
-let isItPlayer1Turn = true;
+let isCtrlDown = false;
 
-const switchTurn = () => {
-   isItPlayer1Turn === true ? isItPlayer1Turn = false : isItPlayer1Turn = true; 
+window.addEventListener("keydown", (event) => turnCtrlOn(event));
+window.addEventListener("keyup", (event) => turnCtrlOff(event));
+
+const turnCtrlOn = (event) => {
+   event.ctrlKey ? isCtrlDown = true : null;
 };
 
+const turnCtrlOff = (event) => {
+   event.key === "Ctrl" ? isCtrlDown = false : null;
+};
 
+const answer = document.getElementById("answer");
+btn1.addEventListener("click", () => printIfCtrl())
 
-console.log(a2.occupant);
-a2.occupiedByPlayer1();
-console.log(a2.occupant);
-
-// console.log(a2.height);
-// a2.increaseHeight();
-// console.log(a2.height);
+const printIfCtrl = () => {
+   if (isCtrlDown) {
+      return answer.innerHTML = "Ctrl down";
+   } else {
+      return answer.innerHTML = "ctrl not down, don't work";
+   };
+}

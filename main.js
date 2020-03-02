@@ -441,7 +441,6 @@ const turnCtrlOff = (event) => {
    event.key === "Ctrl" ? isCtrlDown = false : null;
 };
 
-
 const checkBuildOrPlace = (gridSquare) => {
    if (isShiftDown) {
       return triggerOccupation(gridSquare);
