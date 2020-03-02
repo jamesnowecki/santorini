@@ -242,6 +242,8 @@ const buildOnSquare = (gridSquare) => {
    printHeight(gridSquare);
    calcRemainingBlocks();
    clearLegality();
+   switchTurn();
+   displayTurnNotifier();
 };
 
 const buildWhenClicked = (id) => {
@@ -408,6 +410,20 @@ const turnShiftOn = (event) => {
 const turnShiftOff = (event) => {
    event.key === "Shift" ? isShiftDown = false : null;
 };
+
+let isCtrlDown = false;
+
+window.addEventListener("keydown", (event) => turnCtrlOn(event));
+window.addEventListener("keyup", (event) => turnCtrlOff(event));
+
+const turnCtrlOn = (event) => {
+   event.ctrlKey ? isCtrlDown = true : null;
+};
+
+const turnCtrlOff = (event) => {
+   event.key === "Ctrl" ? isCtrlDown = false : null;
+};
+
 
 const checkBuildOrPlace = (gridSquare) => {
    if (isShiftDown === true) {
