@@ -13,15 +13,15 @@ class GridSquare {
    };
 
    occupiedByPlayer1() {
-      this.occupant == "player1Piece";
+      this.occupant = "player1Piece";
    };
 
    occupiedByPlayer2() {
-      this.occupant == "player2Piece";
+      this.occupant = "player2Piece";
    };
 
    clearTheSpace() {
-      this.occupant == "empty";
+      this.occupant = "empty";
    };
 };
 
@@ -101,10 +101,8 @@ const turnNotifier = document.getElementById('turn-tracker');
 
 const displayTurnNotifier = () => {
    if (isItPlayer1Turn) {
-      turnNotifier.innerHTML = "";
       return turnNotifier.innerHTML = "Player 1's turn";
    }
-      turnNotifier.innerHTML = "";
       return turnNotifier.innerHTML = "Player 2's turn";
 };
 
@@ -253,14 +251,11 @@ const buildOnSquare = (gridSquare) => {
    printHeight(gridSquare);
    calcRemainingBlocks();
    clearLegality();
-   console.log(isItPlayer1Turn);
    switchTurn();
-   console.log(isItPlayer1Turn);
    displayTurnNotifier();
 };
 
 const buildWhenClicked = (id) => {
-   console.log(isItPlayer1Turn)
    calcRemainingBlocks();
    const theGridID = id;
    if (theGridID.occupant === "empty" && theGridID.height <= 3 && checkEnoughPieces(theGridID.height) === true) {
@@ -273,14 +268,9 @@ const buildWhenClicked = (id) => {
 // move pieces around
 
 const triggerOccupation = (gridSquare) => {
-   console.log(isItPlayer1Turn);
    if (gridSquare.occupant === "empty" && gridSquare.height <= 3) {
-      // const theGridSquare = document.getElementById(gridSquare.position);
-      // theGridSquare.classList.add("occupied-P1");
-      // gridSquare.occupiedByPlayer1();
       decideWhoOccupies(gridSquare);
       let pieceToBuild = gridSquare;
-      console.log(pieceToBuild);
       displayLegalBuilds(pieceToBuild);
    } else {
       return alert("Cannot move to a 4th-level square or to an occupied space")
@@ -288,14 +278,13 @@ const triggerOccupation = (gridSquare) => {
 };
 
 const decideWhoOccupies = (gridSquare) => {
-   console.log(isItPlayer1Turn);
    const theGridSquare = document.getElementById(gridSquare.position);
    if (isItPlayer1Turn) {
       theGridSquare.classList.add("occupied-P1");
-      gridSquare.occupiedByPlayer1();
+      return gridSquare.occupiedByPlayer1();
    } else {
       theGridSquare.classList.add("occupied-P2");
-      gridSquare.occupiedByPlayer2();
+      return gridSquare.occupiedByPlayer2();
    }
 }
 

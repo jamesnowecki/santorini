@@ -9,9 +9,21 @@ class GridSquare {
    }
 
    increaseHeight() {
-      this.height++
-   }
-}
+      this.height++;
+   };
+
+   occupiedByPlayer1() {
+      this.occupant = "player1Piece";
+   };
+
+   occupiedByPlayer2() {
+      this.occupant = "player2Piece";
+   };
+
+   clearTheSpace() {
+      this.occupant = "empty";
+   };
+};
 
 const a1 = new GridSquare("a1", 0, "empty", ["a2", "b1", "b2"]);
 const a2 = new GridSquare("a2", 0, "empty", ["a1", "a3", "b1", "b2", "b3"]);
@@ -86,11 +98,10 @@ const switchTurn = () => {
 
 
 
-console.log(isItPlayer1Turn);
-switchTurn();
-console.log(isItPlayer1Turn);
-switchTurn();
-console.log(isItPlayer1Turn);
-switchTurn()
-console.log("wtf is the issue");
-console.log(isItPlayer1Turn);
+console.log(a2.occupant);
+a2.occupiedByPlayer1();
+console.log(a2.occupant);
+
+// console.log(a2.height);
+// a2.increaseHeight();
+// console.log(a2.height);
