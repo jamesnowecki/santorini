@@ -267,9 +267,18 @@ const buildWhenClicked = (id) => {
 
 // move pieces around
 
+const checkWinCon = (gridSquare) => {
+   if (gridSquare.occupant === "player1Piece" && gridSquare.height === 3) {
+      return alert("Player 1 Victory");
+   } else if (gridSquare.occupant === "player2Piece" && gridSquare.height === 3) {
+      return alert("Player 2 Victory");
+   } else null; //currently broken
+}
+
 const triggerOccupation = (gridSquare) => {
    if (gridSquare.occupant === "empty" && gridSquare.height <= 3) {
       decideWhoOccupies(gridSquare);
+      // checkWinCon();
       let pieceToBuild = gridSquare;
       displayLegalBuilds(pieceToBuild);
    } else {
