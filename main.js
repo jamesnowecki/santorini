@@ -448,3 +448,11 @@ const checkBuildOrPlace = (gridSquare) => {
       return buildWhenClicked(gridSquare);
    };
 };
+
+const checkSelectThePiece = (gridSquare) => {
+   if (isCtrlDown) {
+      return selectPieceToMove(gridSquare);
+   } else {
+      return checkBuildOrPlace(gridSquare);
+   };
+};

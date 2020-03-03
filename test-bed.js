@@ -107,6 +107,7 @@ const answer = document.getElementById("answer");
 btn1.addEventListener("click", () => printIfCtrl())
 
 const printIfCtrl = () => {
+   answer.innerHTML = "";
    if (isCtrlDown) {
       return answer.innerHTML = "Ctrl down";
    } else {
