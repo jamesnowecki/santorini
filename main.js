@@ -274,7 +274,7 @@ const checkWinCon = (gridSquare) => {
       return alert("Player 1 Victory");
    } else if (gridSquare.occupant === "player2Piece" && gridSquare.height === 3) {
       return alert("Player 2 Victory");
-   } else return null; //currently broken
+   } else return null;
 }
 
 const triggerOccupation = (gridSquare) => {
@@ -389,34 +389,56 @@ const gsE5 = document.getElementById("e5");
 
 //Event listeners
 // Leftclick to do stuff
-gsA1.addEventListener("click", () => checkBuildOrPlace(a1));
-gsA2.addEventListener("click", () => checkBuildOrPlace(a2));
-gsA3.addEventListener("click", () => checkBuildOrPlace(a3));
-gsA4.addEventListener("click", () => checkBuildOrPlace(a4));
-gsA5.addEventListener("click", () => checkBuildOrPlace(a5));
-gsB1.addEventListener("click", () => checkBuildOrPlace(b1));
-gsB2.addEventListener("click", () => checkBuildOrPlace(b2));
-gsB3.addEventListener("click", () => checkBuildOrPlace(b3));
-gsB4.addEventListener("click", () => checkBuildOrPlace(b4));
-gsB5.addEventListener("click", () => checkBuildOrPlace(b5));
-gsC1.addEventListener("click", () => checkBuildOrPlace(c1));
-gsC2.addEventListener("click", () => checkBuildOrPlace(c2));
-gsC3.addEventListener("click", () => checkBuildOrPlace(c3));
-gsC4.addEventListener("click", () => checkBuildOrPlace(c4));
-gsC5.addEventListener("click", () => checkBuildOrPlace(c5));
-gsD1.addEventListener("click", () => checkBuildOrPlace(d1));
-gsD2.addEventListener("click", () => checkBuildOrPlace(d2));
-gsD3.addEventListener("click", () => checkBuildOrPlace(d3));
-gsD4.addEventListener("click", () => checkBuildOrPlace(d4));
-gsD5.addEventListener("click", () => checkBuildOrPlace(d5));
-gsE1.addEventListener("click", () => checkBuildOrPlace(e1));
-gsE2.addEventListener("click", () => checkBuildOrPlace(e2));
-gsE3.addEventListener("click", () => checkBuildOrPlace(e3));
-gsE4.addEventListener("click", () => checkBuildOrPlace(e4));
-gsE5.addEventListener("click", () => checkBuildOrPlace(e5));
-
-
-
+// gsA1.addEventListener("click", () => checkBuildOrPlace(a1));
+// gsA2.addEventListener("click", () => checkBuildOrPlace(a2));
+// gsA3.addEventListener("click", () => checkBuildOrPlace(a3));
+// gsA4.addEventListener("click", () => checkBuildOrPlace(a4));
+// gsA5.addEventListener("click", () => checkBuildOrPlace(a5));
+// gsB1.addEventListener("click", () => checkBuildOrPlace(b1));
+// gsB2.addEventListener("click", () => checkBuildOrPlace(b2));
+// gsB3.addEventListener("click", () => checkBuildOrPlace(b3));
+// gsB4.addEventListener("click", () => checkBuildOrPlace(b4));
+// gsB5.addEventListener("click", () => checkBuildOrPlace(b5));
+// gsC1.addEventListener("click", () => checkBuildOrPlace(c1));
+// gsC2.addEventListener("click", () => checkBuildOrPlace(c2));
+// gsC3.addEventListener("click", () => checkBuildOrPlace(c3));
+// gsC4.addEventListener("click", () => checkBuildOrPlace(c4));
+// gsC5.addEventListener("click", () => checkBuildOrPlace(c5));
+// gsD1.addEventListener("click", () => checkBuildOrPlace(d1));
+// gsD2.addEventListener("click", () => checkBuildOrPlace(d2));
+// gsD3.addEventListener("click", () => checkBuildOrPlace(d3));
+// gsD4.addEventListener("click", () => checkBuildOrPlace(d4));
+// gsD5.addEventListener("click", () => checkBuildOrPlace(d5));
+// gsE1.addEventListener("click", () => checkBuildOrPlace(e1));
+// gsE2.addEventListener("click", () => checkBuildOrPlace(e2));
+// gsE3.addEventListener("click", () => checkBuildOrPlace(e3));
+// gsE4.addEventListener("click", () => checkBuildOrPlace(e4));
+// gsE5.addEventListener("click", () => checkBuildOrPlace(e5));checkSelectThePiece
+gsA1.addEventListener("click", () => checkSelectThePiece(a1));
+gsA2.addEventListener("click", () => checkSelectThePiece(a2));
+gsA3.addEventListener("click", () => checkSelectThePiece(a3));
+gsA4.addEventListener("click", () => checkSelectThePiece(a4));
+gsA5.addEventListener("click", () => checkSelectThePiece(a5));
+gsB1.addEventListener("click", () => checkSelectThePiece(b1));
+gsB2.addEventListener("click", () => checkSelectThePiece(b2));
+gsB3.addEventListener("click", () => checkSelectThePiece(b3));
+gsB4.addEventListener("click", () => checkSelectThePiece(b4));
+gsB5.addEventListener("click", () => checkSelectThePiece(b5));
+gsC1.addEventListener("click", () => checkSelectThePiece(c1));
+gsC2.addEventListener("click", () => checkSelectThePiece(c2));
+gsC3.addEventListener("click", () => checkSelectThePiece(c3));
+gsC4.addEventListener("click", () => checkSelectThePiece(c4));
+gsC5.addEventListener("click", () => checkSelectThePiece(c5));
+gsD1.addEventListener("click", () => checkSelectThePiece(d1));
+gsD2.addEventListener("click", () => checkSelectThePiece(d2));
+gsD3.addEventListener("click", () => checkSelectThePiece(d3));
+gsD4.addEventListener("click", () => checkSelectThePiece(d4));
+gsD5.addEventListener("click", () => checkSelectThePiece(d5));
+gsE1.addEventListener("click", () => checkSelectThePiece(e1));
+gsE2.addEventListener("click", () => checkSelectThePiece(e2));
+gsE3.addEventListener("click", () => checkSelectThePiece(e3));
+gsE4.addEventListener("click", () => checkSelectThePiece(e4));
+gsE5.addEventListener("click", () => checkSelectThePiece(e5));checkSelectThePiece
 let isShiftDown = false;
 
 window.addEventListener("keydown", (event) => turnShiftOn(event));
@@ -445,34 +467,34 @@ const turnCtrlOff = (event) => {
    event.key === "Ctrl" ? isCtrlDown = false : null;
 };
 
-// const checkBuildOrPlace = (gridSquare) => {
-//    if (isShiftDown) {
-//       return triggerOccupation(gridSquare);
-//    } else {
-//       return buildWhenClicked(gridSquare);
-//    };
-// };
-
 const checkBuildOrPlace = (gridSquare) => {
-   if(isCtrlDown) {
-      return selectPieceToMove(gridSquare)
-   } else if (isShiftDown) {
+   if (isShiftDown) {
       return triggerOccupation(gridSquare);
    } else {
       return buildWhenClicked(gridSquare);
    };
 };
 
+// const checkBuildOrPlace = (gridSquare) => {
+//    if(isCtrlDown) {
+//       return selectPieceToMove(gridSquare);
+//    } else if (isShiftDown) {
+//       return triggerOccupation(gridSquare);
+//    } else {
+//       return buildWhenClicked(gridSquare);
+//    };
+// };
+
 const selectPieceToMove = (gridSquare) => {
-   const theGridSquare = document.getElementById(gridSquare.position)
+   const theGridSquare = document.getElementById(gridSquare.position);
    theGridSquare.classList.add('piece-to-move');
    pieceChosenToMove = gridSquare;
 }
 
-// const checkSelectThePiece = (gridSquare) => {
-//    if (isCtrlDown) {
-//       return selectPieceToMove(gridSquare);
-//    } else {
-//       return checkBuildOrPlace(gridSquare);
-//    };
-// };
+const checkSelectThePiece = (gridSquare) => {
+   if (isCtrlDown) {
+      return selectPieceToMove(gridSquare);
+   } else {
+      return checkBuildOrPlace(gridSquare);
+   };
+};
