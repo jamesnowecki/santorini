@@ -500,9 +500,8 @@ const checkSelectThePiece = (gridSquare) => {
 };
 
 
-
-
 // Newer fns for select and move
+
 const checkLegalSelect = (gridSquare) => {
    if (isItPlayer1Turn && gridSquare.occupant === "player1piece") {
       return selectPiece(gridSquare);
@@ -515,4 +514,16 @@ const checkLegalSelect = (gridSquare) => {
 const selectPiece = (gridSquare) => {
    displayLegalMoves(gridSquare);
    return selectPieceToMove(gridSquare);
+}
+
+const deployAPiece = (gridSquare) => {
+   if (isItPlayer1Turn) {
+      const theGridSquare = document.getElementById(gridSquare.position);
+      theGridSquare.classList.add('occupied-P1');
+      return gridSquare.occupiedByPlayer1();
+   } else {
+      const theGridSquare = document.getElementById(gridSquare.position);
+      theGridSquare.classList.add('occupied-P2');
+      return gridSquare.occupiedByPlayer2();
+   }
 }
