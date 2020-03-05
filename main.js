@@ -498,3 +498,21 @@ const checkSelectThePiece = (gridSquare) => {
       return checkBuildOrPlace(gridSquare);
    };
 };
+
+
+
+
+// Newer fns for select and move
+const checkLegalSelect = (gridSquare) => {
+   if (isItPlayer1Turn && gridSquare.occupant === "player1piece") {
+      return selectPiece(gridSquare);
+   } else if (!isItPlayer1Turn && gridSquare.occupant === "player2piece") {
+     return selectPiece(gridSquare);
+   } else return alert("You must select your own piece to move!");
+};
+
+
+const selectPiece = (gridSquare) => {
+   displayLegalMoves(gridSquare);
+   return selectPieceToMove(gridSquare);
+}
