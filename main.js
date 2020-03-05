@@ -387,6 +387,17 @@ const gsE3 = document.getElementById("e3");
 const gsE4 = document.getElementById("e4");
 const gsE5 = document.getElementById("e5");
 
+const domGridSquareArray = [gsA1, gsA2, gsA3, gsA4, gsA5, gsB1, gsB2, gsB3, gsB4, gsB5, gsC1, gsC2, gsC3, gsC4, gsC5, gsD1, gsD2, gsD3, gsD4, gsD5, gsE1, gsE2, gsE3, gsE4, gsE5]
+
+
+const createEventListener = (domGridSquare, theFunc) => {
+   return domGridSquare.addEventListener("click", () => theFunc())
+}
+
+const addEventListenersToGrid = (clickFunction) => {
+   return domGridSquareArray.forEach(clickFunction);
+}
+
 //Event listeners
 // Leftclick to do stuff
 // gsA1.addEventListener("click", () => checkBuildOrPlace(a1));
