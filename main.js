@@ -127,7 +127,9 @@ const removeEventListenersFromGrid = theFunc => {
      const gridSquareVariable = translateStringToVariable(domGridSquare.id);
      const funcyVariable = () => theFunc(gridSquareVariable);
  
+    //  return domGridSquare.removeEventListener("click", funcyVariable);
      return domGridSquare.removeEventListener("click", funcyVariable);
+
    });
  };
 
@@ -171,13 +173,13 @@ const deployAlternatePieces = (gridSquare) => {
 }
 
 const deployAPiece = gridSquare => {
-console.log(have2piecesBeenDeployedForEachPlayer());
-   if (have2piecesBeenDeployedForEachPlayer() === true) {
+  displayTurnNotifier();
+   if (getNumberOfOccupiedSquares() > 3) {
+    alert("time to start the game");
+
       removeEventListenersFromGrid(deployAPiece);
-      alert("time to start the game");
-      addEventListenersToGrid(selectPieceToMove);
+      return addEventListenersToGrid(selectPieceToMove);
     } else deployAlternatePieces(gridSquare);
-    console.log(have2piecesBeenDeployedForEachPlayer())
  };
  
  const filterForPlayer1Pieces = (gridSquare) => {
@@ -192,15 +194,24 @@ console.log(have2piecesBeenDeployedForEachPlayer());
    } else null;
 };
  
- const have2piecesBeenDeployedForEachPlayer = () => {
-    const filteredArrayP1 = boardArray.filter(filterForPlayer1Pieces);
-    const filteredArrayP2 = boardArray.filter(filterForPlayer2Pieces);
-    if (filteredArrayP1.length === 2 && filteredArrayP2.length === 2) {
-       return true;
-    } return false;
- };
+//  const have2piecesBeenDeployedForEachPlayer = () => {
+//     const filteredArrayP1 = boardArray.filter(filterForPlayer1Pieces);
+//     const filteredArrayP2 = boardArray.filter(filterForPlayer2Pieces);
+//     if (filteredArrayP1.length === 2 && filteredArrayP2.length === 2) {
+//        return true;
+//     } return false;
+//  };
 
+const findOccupiedSquare = (gridSquare) => {
+  if (gridSquare.occupant != "empty") {
+    return gridSquare;
+  } else null;
+}
 
+const getNumberOfOccupiedSquares = () => {
+  const occupiedArray = boardArray.filter(findOccupiedSquare);
+  return occupiedArray.length;
+}
 
  //select the piece to move
 
