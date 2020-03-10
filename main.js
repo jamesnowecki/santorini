@@ -114,6 +114,7 @@ const gsE5 = document.getElementById("e5");
 const domGridSquareArray = [gsA1, gsA2, gsA3, gsA4, gsA5, gsB1, gsB2, gsB3, gsB4, gsB5, gsC1, gsC2, gsC3, gsC4, gsC5, gsD1, gsD2, gsD3, gsD4, gsD5, gsE1, gsE2, gsE3, gsE4, gsE5];
 
 const addEventListenersToGrid = theFunc => {
+  // document.getElementById('test').addEventListener("click", ()=> console.log('still here'))
   return domGridSquareArray.forEach(domGridSquare => {
     const gridSquareVariable = translateStringToVariable(domGridSquare.id);
     const funcyVariable = () => theFunc(gridSquareVariable);
@@ -123,6 +124,10 @@ const addEventListenersToGrid = theFunc => {
 };
 
 const removeEventListenersFromGrid = theFunc => {
+  // document.getElementById('test').removeEventListener("click", ()=> console.log('still here'))
+
+  console.log("removed" + theFunc)
+
    return domGridSquareArray.forEach(domGridSquare => {
      const gridSquareVariable = translateStringToVariable(domGridSquare.id);
      const funcyVariable = () => theFunc(gridSquareVariable);
@@ -174,13 +179,14 @@ const deployAlternatePieces = (gridSquare) => {
 
 const deployAPiece = gridSquare => {
   displayTurnNotifier();
-   if (getNumberOfOccupiedSquares() > 3) {
-    alert("time to start the game");
 
+  if (getNumberOfOccupiedSquares() === 3) {
+      deployAlternatePieces(gridSquare)
       removeEventListenersFromGrid(deployAPiece);
-      return addEventListenersToGrid(selectPieceToMove);
+      addEventListenersToGrid(selectPieceToMove);
     } else deployAlternatePieces(gridSquare);
- };
+
+};
  
  const filterForPlayer1Pieces = (gridSquare) => {
     if (gridSquare.occupant === 'player1piece') {
@@ -217,11 +223,14 @@ const getNumberOfOccupiedSquares = () => {
 
 
  const selectPieceToMove = gridSquare => {
+   console.log("select piece to move")
    const theGridSquare = document.getElementById(gridSquare.position);
    theGridSquare.classList.add("piece-to-move");
    pieceChosenToMove = gridSquare;
    removeEventListenersFromGrid(selectPieceToMove);
    addEventListenersToGrid(triggerOccupation);
+  //  addEventListenersToGrid(() => console.log('Moved on'));
+
  };
  
  const checkLegalSelect = gridSquare => {
@@ -258,6 +267,8 @@ const checkWinCon = gridSquare => {
  };
  
  const triggerOccupation = gridSquare => {
+  console.log("occupation triggered")
+
    if (gridSquare.occupant === "empty" && gridSquare.height <= 3) {
      decideWhoOccupies(gridSquare);
      checkWinCon(gridSquare);
