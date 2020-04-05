@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: aquamarine;
+  background-color: #ff9a57;
   margin: auto;
 }
 
@@ -60,9 +60,7 @@ button {
   border: 5px solid red;
 }
 
-#turn-switch {
-  background-color: blanchedalmond;
-  width: 200px;
-  height: 100px;
+.piece-to-move {
+  border: 5px solid green;
 }
 /*# sourceMappingURL=main.css.map */

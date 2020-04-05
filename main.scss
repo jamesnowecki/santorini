@@ -5,7 +5,9 @@
 }
 
 body {
-    background-color: aquamarine;
+    // background-color: aquamarine;
+    background-color: rgb(255, 154, 87);
+
     margin: auto;
 }
 
@@ -56,9 +58,6 @@ button {
 .legal-choice {
     border: 5px solid red;
 }
-
-#turn-switch {
-    background-color: blanchedalmond;
-    width: 200px;
-    height: 100px;
+.piece-to-move {
+    border: 5px solid green;
 }
