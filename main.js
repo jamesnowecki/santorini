@@ -126,7 +126,7 @@ const addEventListenersToGrid = theFunc => {
 const removeEventListenersFromGrid = theFunc => {
   // document.getElementById('test').removeEventListener("click", ()=> console.log('still here'))
 
-  console.log("removed" + theFunc)
+  // console.log("removed" + theFunc)
 
    return domGridSquareArray.forEach(domGridSquare => {
      const gridSquareVariable = translateStringToVariable(domGridSquare.id);
@@ -138,6 +138,27 @@ const removeEventListenersFromGrid = theFunc => {
    });
  };
 
+ const removeEventListenerFromGridDeploy = () => {
+   return domGridSquareArray.forEach(domGridSquare => {
+      const gridSquareVariable = translateStringToVariable(domGridSquare.id);
+
+     return domGridSquare.removeEventListener("click", () => deployAPiece(gridSquareVariable))
+   })
+ }
+
+ const removeEListeners = () => {
+   return domGridSquareArray.forEach(domGridSquare => {
+     const oldSquare = domGridSquare;
+     const newSquare = oldSquare.cloneNode(true);
+     oldSquare.parentNode.replaceChild(newSquare, oldSquare);
+   })
+ }
+
+ const removeOnClicks = () => {
+   return domGridSquareArray.forEach(domGridSquare => {
+     domGridSquare.onClick = null;
+   });
+ }
 
 // Turn checking and switching:
 
@@ -169,33 +190,42 @@ const deployAlternatePieces = (gridSquare) => {
       theGridSquare.classList.add("occupied-P1");
       gridSquare.occupiedByPlayer1();
       switchTurn();
+      console.log("p1:", isItPlayer1Turn)
     } else {
       const theGridSquare = document.getElementById(gridSquare.position);
       theGridSquare.classList.add("occupied-P2");
       gridSquare.occupiedByPlayer2();
       switchTurn();
+      console.log("p1:", isItPlayer1Turn)
     }
 }
 
 const deployAPiece = gridSquare => {
   displayTurnNotifier();
+  console.log("deploy still triggering")
 
   if (getNumberOfOccupiedSquares() === 3) {
       deployAlternatePieces(gridSquare)
-      removeEventListenersFromGrid(deployAPiece);
-      addEventListenersToGrid(selectPieceToMove);
+      console.log("P1:", isItPlayer1Turn)
+      // removeEventListenersFromGrid(deployAPiece);
+      removeEventListenerFromGridDeploy();
+      // removeEListeners();
+      // removeOnClicks();
+      addEventListenersToGrid(checkLegalSelect);
+      alert("deployment ended")
+      console.log("p1 at d end?:", isItPlayer1Turn)
     } else deployAlternatePieces(gridSquare);
 
 };
  
  const filterForPlayer1Pieces = (gridSquare) => {
-    if (gridSquare.occupant === 'player1piece') {
+    if (gridSquare.occupant === 'player1Piece') {
        return gridSquare;
     } else null;
  };
 
  const filterForPlayer2Pieces = (gridSquare) => {
-   if (gridSquare.occupant === 'player2piece') {
+   if (gridSquare.occupant === 'player2Piece') {
       return gridSquare;
    } else null;
 };
@@ -223,7 +253,7 @@ const getNumberOfOccupiedSquares = () => {
 
 
  const selectPieceToMove = gridSquare => {
-   console.log("select piece to move")
+  //  console.log("select piece to move")
    const theGridSquare = document.getElementById(gridSquare.position);
    theGridSquare.classList.add("piece-to-move");
    pieceChosenToMove = gridSquare;
@@ -234,9 +264,12 @@ const getNumberOfOccupiedSquares = () => {
  };
  
  const checkLegalSelect = gridSquare => {
-   if (isItPlayer1Turn && gridSquare.occupant === "player1piece") {
+   console.log("checkLegalSelect triggered");
+   console.log("P1:",isItPlayer1Turn);
+   console.log(gridSquare.occupant);
+   if (isItPlayer1Turn && gridSquare.occupant === "player1Piece") {
      return selectPiece(gridSquare);
-   } else if (!isItPlayer1Turn && gridSquare.occupant === "player2piece") {
+   } else if (!isItPlayer1Turn && gridSquare.occupant === "player2Piece") {
      return selectPiece(gridSquare);
    } else return alert("You must select your own piece to move!");
  };
