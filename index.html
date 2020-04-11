@@ -36,19 +36,40 @@
     <div id="game-container">
         <section id="dashboard">
             <h2>Pieces remaining:</h2>
-            <p>Level 1 pieces remaining: </p>
-            <p id="level-1-remaining"></p>
-            <p>Level 2 pieces remaining: </p>
-            <p id="level-2-remaining"></p>
-            <p>Level 3 pieces remaining: </p>
-            <p id="level-3-remaining"></p>
-            <p>Level 4 pieces remaining: </p>
-            <p id="level-4-remaining"></p>
-            <h2>Turn tracker:</h2>
-            <p id="turn-tracker">Player 1's turn</p>
-            <h2>Turn tracker:</h2>
-            <p id="game-status">Deploy a piece</p>
-
+            <div>
+                <div class="key-pair">
+                    <p>P1:</p>
+                    <p class="color-icon" id="iconP1"></p>
+                </div>
+                <div>
+                    <p>P2:</p>
+                    <p class="color-icon" id="iconP2"></p>
+                </div>
+            </div>
+            <div class="key-pair">
+                <p class="dashboard-key">Level 1 pieces remaining: </p>
+                <p id="level-1-remaining"></p>
+            </div>
+            <div class="key-pair">
+                <p class="dashboard-key">Level 2 pieces remaining: </p>
+                <p id="level-2-remaining"></p>
+            </div>
+            <div class="key-pair">
+                <p class="dashboard-key">Level 3 pieces remaining: </p>
+                <p id="level-3-remaining"></p>
+            </div>
+            <div class="key-pair">
+                <p class="dashboard-key">Level 4 pieces remaining: </p>
+                <p id="level-4-remaining"></p>
+            </div>
+            <div class="key-pair">
+                <p class="dashboard-key">Turn tracker:</p>
+                <p id="turn-tracker">Player 1's turn</p>
+            </div>
+            <div class="key-pair">
+                <p class="dashboard-key">Game status:</p>
+                <p id="game-status">Deploy a piece</p>
+            </div>
          </section>
     
          <div class="game-grid">
