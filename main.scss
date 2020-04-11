@@ -1,18 +1,36 @@
-* {
+body {
+    background-color: white;
+    font-family: "Titillium Web", sans-serif;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body {
-    background-color: white;
-    font-family: "Titillium Web", sans-serif;
-    margin: auto;
-}
-
 h1 {
     background-color: blue;
     color: white;
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 0;
+}
+
+h2 {
+    text-align: center;
+    padding: 10px;
+    font-weight: normal;
+}
+
+#rules-modal {
+    padding: 10px;
+        li {
+            text-align: justify;    
+        }
+
+}
+
+.hidden {
+    display: none;
 }
 
 #game-container {
@@ -25,18 +43,21 @@ h1 {
 
 #dashboard {
     background-color: white;
-    border: 1px solid black;
+    border: 2px solid black;
+    width: 90vw;
+    padding: 10px;
 }
 
 .game-grid {
-    width: 90vw;
-    height: 90vw;
+    width: 80vw;
+    height: 80vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 5px;
     padding: 25px;
     background-color: white;
     border: 2px solid black;
+    margin: 15px 0;
 }
 
 button.non-grid {
@@ -44,7 +65,9 @@ button.non-grid {
     height: 60px;
     background-color: blue;
     border: none;
-    color: white
+    color: white;
+    margin-bottom: 0 auto 10px auto;
+    display: block;
 }
 
 .height-0 {

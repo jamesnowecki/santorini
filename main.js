@@ -539,3 +539,16 @@ const resetGame = () => {
 //Set up to start game
 
 addEventListenersToGrid(deployAPiece);
+
+
+//button functionality
+
+const removeHidden = () => {
+  const rules = document.getElementById("rules-modal");
+  return rules.classList.remove("hidden");
+}
+
+const addHidden = () => {
+  const rules = document.getElementById("rules-modal");
+  return rules.classList.add("hidden");
+}
