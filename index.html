@@ -18,22 +18,24 @@
     <h2>A digital version of the classic Gordon Hamilton 2004 abstract boardgame, coded with love, in order to learn and improve my skills with JavaScript.</h2>
     <button class="non-grid" onclick=removeHidden()>Rules</button>
 
-    <section id="rules-modal" class="hidden">
-        <h2>Rules:</h2>
-        <ul>
-            <li>This is a game for 2 players, who take alternating turns, with player 1 going first.</li>
-            <li>The game starts with a deployment phase, where each player alternates placing their two workers on any empty grid square, which will show on the board as circles filled with grey (player 1) or pink (player 2).</li>
-            <li><span>A turn:</span> After two of each workers are placed, the normal turn sequence begins. Each player alternates turns of selecting their worker (left click on one of your workers to select), choosing a grid square to move it to (left-click to select), then build on a square to increase it's height by one (left-click to build). The turn then passes to the other player.</li>
-            <li><span>Moving:</span> A worker may move to any empty square that your worker can climb up or down on to. A worker can move to any adjacent square (including diagonals) of a lower or equal height, or a square of one higher than the currently occupied square. A worker can never set foot on a 4-height square.</li>
-            <li><span>Building:</span> A worker must build after it moves. If you cannot build the move is illegal and you lose the game. The worker can build on any adjacent square (including diagonals) that is not occupied, assuming there are enough pieces of that height remaining. This increases the height of the square by one, to a maximum height of 4.</li>
-            <li><span>Winning the game:</span> The first player to get a worker stood on a 3-height square wins the game!</li>
+    <div id="rules-modal" class="hidden">
+        <section  id="rules-center-box">
+            <h2>Rules:</h2>
+            <ul>
+                <li>This is a game for 2 players, who take alternating turns, with player 1 going first.</li>
+                <li>The game starts with a deployment phase, where each player alternates placing their two workers on any empty grid square, which will show on the board as circles filled with grey (player 1) or pink (player 2).</li>
+                <li><span>A turn:</span> After two of each workers are placed, the normal turn sequence begins. Each player alternates turns of selecting their worker (left click on one of your workers to select), choosing a grid square to move it to (left-click to select), then build on a square to increase it's height by one (left-click to build). The turn then passes to the other player.</li>
+                <li><span>Moving:</span> A worker may move to any empty square that your worker can climb up or down on to. A worker can move to any adjacent square (including diagonals) of a lower or equal height, or a square of one higher than the currently occupied square. A worker can never set foot on a 4-height square.</li>
+                <li><span>Building:</span> A worker must build after it moves. If you cannot build the move is illegal and you lose the game. The worker can build on any adjacent square (including diagonals) that is not occupied, assuming there are enough pieces of that height remaining. This increases the height of the square by one, to a maximum height of 4.</li>
+                <li><span>Winning the game:</span> The first player to get a worker stood on a 3-height square wins the game!</li>
+            </ul>
             <button class="non-grid" id="close-modal-button" onclick=addHidden()>Close</button>
-        </ul>
-    </section>
+         </section>
+    </div>
 
     <div id="game-container">
         <section id="dashboard">
-            <h2>Pieces remaining</h2>
+            <h2>Pieces remaining:</h2>
             <p>Level 1 pieces remaining: </p>
             <p id="level-1-remaining"></p>
             <p>Level 2 pieces remaining: </p>
