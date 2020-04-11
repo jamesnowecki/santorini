@@ -157,6 +157,19 @@ const displayTurnNotifier = () => {
   return (turnNotifier.innerHTML = "Player 2's turn");
 };
 
+const gameStatus = document.getElementById("game-status");
+
+const updateGameStatus = (stage) => {
+  if(stage === "select") {
+    return (gameStatus.innerHTML = "Select a piece to move");
+  } else if (stage === "move") {
+    return (gameStatus.innerHTML = "Select a square to move to");
+  } else if (stage === "build") {
+    return (gameStatus.innerHTML = "Select a square to build on")
+  }
+}
+
+
 // Storage variable for last place a piece was placed (e.g. current piece to perform build action); piece selected to move
 let pieceToBuild;
 
@@ -185,6 +198,7 @@ const deployAPiece = gridSquare => {
       removeOnClicks();
       addEventListenersToGrid(checkLegalSelect);
       alert("deployment ended")
+      updateGameStatus("select");
     } else {
       deployAlternatePieces(gridSquare);
     }
@@ -222,7 +236,7 @@ const getNumberOfOccupiedSquares = () => {
    pieceChosenToMove = gridSquare;
    removeOnClicks();
    addEventListenerTriggerOccupationToGrid(gridSquare);
-
+  updateGameStatus("move");
  };
  
  const checkLegalSelect = gridSquare => {
@@ -270,6 +284,7 @@ const clearMovedPieceFromSquare = (oldGridSquare) => {
      displayLegalBuilds(pieceToBuild);
      removeOnClicks();
      addEventListenersToGrid(buildWhenClicked);
+     updateGameStatus("build");
    } else {
      return alert("Cannot move to a square if the target square is more than 1 higher than your current square, if it is a 4th-level square or an occupied space");
    }
@@ -306,6 +321,7 @@ const printHeight = gridSquare => {
    displayTurnNotifier();
    removeOnClicks();
    addEventListenersToGrid(checkLegalSelect);
+   updateGameStatus("select");
  };
  
  const buildWhenClicked = id => {
