@@ -14,12 +14,10 @@ class GridSquare {
 
   occupiedByPlayer1() {
     this.occupant = "player1Piece";
-    // return pieceChosenToMove.clearTheSpace();
   }
 
   occupiedByPlayer2() {
     this.occupant = "player2Piece";
-    // return pieceChosenToMove.clearTheSpace();
   }
 
   clearTheSpace() {
@@ -114,23 +112,28 @@ const gsE5 = document.getElementById("e5");
 const domGridSquareArray = [gsA1, gsA2, gsA3, gsA4, gsA5, gsB1, gsB2, gsB3, gsB4, gsB5, gsC1, gsC2, gsC3, gsC4, gsC5, gsD1, gsD2, gsD3, gsD4, gsD5, gsE1, gsE2, gsE3, gsE4, gsE5];
 
 const addEventListenersToGrid = theFunc => {
-  // document.getElementById('test').addEventListener("click", ()=> console.log('still here'))
+
   return domGridSquareArray.forEach(domGridSquare => {
     const gridSquareVariable = translateStringToVariable(domGridSquare.id);
     const funcyVariable = () => theFunc(gridSquareVariable);
 
-    // return domGridSquare.addEventListener("click", funcyVariable);
     return domGridSquare.onclick=funcyVariable;
   })
 };
 
  const removeOnClicks = () => {
    return domGridSquareArray.forEach(domGridSquare => {
-      console.log(domGridSquare.onclick)
      domGridSquare.onclick = null;
-     console.log(domGridSquare.onclick)
-
    });
+ }
+
+ const addEventListenerTriggerOccupationToGrid = (oldGridSquare) => {
+   return domGridSquareArray.forEach(domGridSquare => {
+    const gridSquareVariable = translateStringToVariable(domGridSquare.id);
+    const eventListenerTriggerOpp = () => triggerOccupation(gridSquareVariable, oldGridSquare)
+
+    return domGridSquare.onclick=eventListenerTriggerOpp;
+   })
  }
 
 // Turn checking and switching:
@@ -212,20 +215,15 @@ const getNumberOfOccupiedSquares = () => {
 
 
  const selectPieceToMove = gridSquare => {
-  //  console.log("select piece to move")
    const theGridSquare = document.getElementById(gridSquare.position);
    theGridSquare.classList.add("piece-to-move");
    pieceChosenToMove = gridSquare;
-   removeEventListenersFromGrid(selectPieceToMove);
-   addEventListenersToGrid(triggerOccupation);
-  //  addEventListenersToGrid(() => console.log('Moved on'));
+   removeOnClicks();
+   addEventListenerTriggerOccupationToGrid(gridSquare);
 
  };
  
  const checkLegalSelect = gridSquare => {
-   console.log("checkLegalSelect triggered");
-   console.log("P1:",isItPlayer1Turn);
-   console.log(gridSquare.occupant);
    if (isItPlayer1Turn && gridSquare.occupant === "player1Piece") {
      return selectPiece(gridSquare);
    } else if (!isItPlayer1Turn && gridSquare.occupant === "player2Piece") {
@@ -252,15 +250,26 @@ const checkWinCon = gridSquare => {
    } else return null;
  };
  
- const triggerOccupation = gridSquare => {
+const clearMovedPieceFromSquare = (oldGridSquare) => {
+  oldGridSquare.clearTheSpace();
+  console.log(oldGridSquare.occupant);
+  const theGridSquare = document.getElementById(oldGridSquare.position);
+  theGridSquare.classList.remove("occupied-P1");
+  theGridSquare.classList.remove("occupied-P2");
+  theGridSquare.classList.remove("piece-to-move");
+  clearLegality();
+}
+
+ const triggerOccupation = (gridSquare, oldGridSquare) => {
   console.log("occupation triggered")
 
    if (gridSquare.occupant === "empty" && gridSquare.height <= 3) {
      decideWhoOccupies(gridSquare);
+     clearMovedPieceFromSquare(oldGridSquare);
      checkWinCon(gridSquare);
      let pieceToBuild = gridSquare;
      displayLegalBuilds(pieceToBuild);
-     removeEventListenersFromGrid(triggerOccupation);
+     removeOnClicks();
      addEventListenersToGrid(buildWhenClicked);
    } else {
      return alert("Cannot move to a 4th-level square or to an occupied space");
@@ -296,7 +305,7 @@ const printHeight = gridSquare => {
    clearLegality();
    switchTurn();
    displayTurnNotifier();
-   removeEventListenersFromGrid(buildWhenClicked);
+   removeOnClicks();
    addEventListenersToGrid(selectPieceToMove);
  };
  
