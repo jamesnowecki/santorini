@@ -6,7 +6,8 @@
 }
 
 body {
-  background-color: #f6fffd;
+  background-color: white;
+  font-family: "Titillium Web", sans-serif;
   margin: auto;
 }
 
@@ -88,10 +89,10 @@ button.non-grid {
 }
 
 .legal-choice {
-  border: 5px solid red;
+  border: 3px solid red;
 }
 
 .piece-to-move {
-  border: 5px solid green;
+  border: 3px solid green;
 }
 /*# sourceMappingURL=main.css.map */

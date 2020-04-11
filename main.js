@@ -305,7 +305,7 @@ const printHeight = gridSquare => {
    switchTurn();
    displayTurnNotifier();
    removeOnClicks();
-   addEventListenersToGrid(selectPieceToMove);
+   addEventListenersToGrid(checkLegalSelect);
  };
  
  const buildWhenClicked = id => {
@@ -504,6 +504,12 @@ const clearSquare = (gridSquare) => {
   const theGridSquare = document.getElementById(gridSquare.position);
   theGridSquare.classList.remove("occupied-P1");
   theGridSquare.classList.remove("occupied-P2");
+  theGridSquare.classList.remove("piece-to-move");
+  theGridSquare.classList.remove("height-1");
+  theGridSquare.classList.remove("height-2");
+  theGridSquare.classList.remove("height-3");
+  theGridSquare.classList.remove("height-4");
+
 };
 
 const resetGame = () => {
