@@ -1,5 +1,4 @@
 body {
-    background-image: url(./santorini-large.jpg);
     background-color: white;
     font-family: "Titillium Web", sans-serif;
     padding: 0;
@@ -74,6 +73,7 @@ button.non-grid {
     border-radius: 10px;
     width: 90vw;
     padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .game-grid {
@@ -87,6 +87,7 @@ button.non-grid {
     border: 2px solid black;
     border-radius: 10px;
     margin: 15px 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .height-0 {
@@ -115,7 +116,7 @@ button.non-grid {
 }
 
 .occupied-P2 {
-    background-color: rgb(252, 41, 182);
+    background-color: rgb(241, 155, 213);
     border-radius: 100%;
 }
 
@@ -124,4 +125,32 @@ button.non-grid {
 }
 .piece-to-move {
     border: 3px solid green;
+}
+
+@media only screen and (min-width: 426px) {
+
+}
+
+@media only screen and (min-width: 768px) {
+
+    #game-container{
+        flex-direction: row-reverse;
+    }
+
+    #dashboard {
+        width: 25vw;
+        height: 25vw; 
+    }
+
+    .game-grid {
+        width: 25vw;
+        height: 25vw;
+    }
+
+    .legal-choice {
+        border: 4px solid red;
+    }
+    .piece-to-move {
+        border: 4px solid green;
+    }
 }
