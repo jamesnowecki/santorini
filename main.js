@@ -119,44 +119,17 @@ const addEventListenersToGrid = theFunc => {
     const gridSquareVariable = translateStringToVariable(domGridSquare.id);
     const funcyVariable = () => theFunc(gridSquareVariable);
 
-    return domGridSquare.addEventListener("click", funcyVariable);
-  });
+    // return domGridSquare.addEventListener("click", funcyVariable);
+    return domGridSquare.onclick=funcyVariable;
+  })
 };
-
-const removeEventListenersFromGrid = theFunc => {
-  // document.getElementById('test').removeEventListener("click", ()=> console.log('still here'))
-
-  // console.log("removed" + theFunc)
-
-   return domGridSquareArray.forEach(domGridSquare => {
-     const gridSquareVariable = translateStringToVariable(domGridSquare.id);
-     const funcyVariable = () => theFunc(gridSquareVariable);
- 
-    //  return domGridSquare.removeEventListener("click", funcyVariable);
-     return domGridSquare.removeEventListener("click", funcyVariable);
-
-   });
- };
-
- const removeEventListenerFromGridDeploy = () => {
-   return domGridSquareArray.forEach(domGridSquare => {
-      const gridSquareVariable = translateStringToVariable(domGridSquare.id);
-
-     return domGridSquare.removeEventListener("click", () => deployAPiece(gridSquareVariable))
-   })
- }
-
- const removeEListeners = () => {
-   return domGridSquareArray.forEach(domGridSquare => {
-     const oldSquare = domGridSquare;
-     const newSquare = oldSquare.cloneNode(true);
-     oldSquare.parentNode.replaceChild(newSquare, oldSquare);
-   })
- }
 
  const removeOnClicks = () => {
    return domGridSquareArray.forEach(domGridSquare => {
-     domGridSquare.onClick = null;
+      console.log(domGridSquare.onclick)
+     domGridSquare.onclick = null;
+     console.log(domGridSquare.onclick)
+
    });
  }
 
@@ -202,20 +175,14 @@ const deployAlternatePieces = (gridSquare) => {
 
 const deployAPiece = gridSquare => {
   displayTurnNotifier();
-  console.log("deploy still triggering")
-
   if (getNumberOfOccupiedSquares() === 3) {
       deployAlternatePieces(gridSquare)
-      console.log("P1:", isItPlayer1Turn)
-      // removeEventListenersFromGrid(deployAPiece);
-      removeEventListenerFromGridDeploy();
-      // removeEListeners();
-      // removeOnClicks();
+      removeOnClicks();
       addEventListenersToGrid(checkLegalSelect);
       alert("deployment ended")
-      console.log("p1 at d end?:", isItPlayer1Turn)
-    } else deployAlternatePieces(gridSquare);
-
+    } else {
+      deployAlternatePieces(gridSquare);
+    }
 };
  
  const filterForPlayer1Pieces = (gridSquare) => {
@@ -229,14 +196,6 @@ const deployAPiece = gridSquare => {
       return gridSquare;
    } else null;
 };
- 
-//  const have2piecesBeenDeployedForEachPlayer = () => {
-//     const filteredArrayP1 = boardArray.filter(filterForPlayer1Pieces);
-//     const filteredArrayP2 = boardArray.filter(filterForPlayer2Pieces);
-//     if (filteredArrayP1.length === 2 && filteredArrayP2.length === 2) {
-//        return true;
-//     } return false;
-//  };
 
 const findOccupiedSquare = (gridSquare) => {
   if (gridSquare.occupant != "empty") {
@@ -280,12 +239,6 @@ const getNumberOfOccupiedSquares = () => {
  };
  
 
-
-
-
-
-
-
 // move pieces around
 
 const checkWinCon = gridSquare => {
@@ -326,13 +279,6 @@ const checkWinCon = gridSquare => {
  };
 
 
-
-
-
-
-
-
-
 //funcs to increase height of squares
 
 const printHeight = gridSquare => {
@@ -370,11 +316,6 @@ const printHeight = gridSquare => {
    }
  };
  
-
-
-
-
-
 // Piece counting
 
 const checkPiecesMoreThan0 = piecesRemaining => {
@@ -426,25 +367,6 @@ const checkEnoughPieces = height => {
   return false;
 };
 
-// const checkEnoughPieces = (height) => {
-//    switch(height) {
-//       case height === 0:
-//          checkPiecesMoreThan0(getRemainingLvl1Pieces());
-//       break;
-//       case height === 1:
-//          checkPiecesMoreThan0(getRemainingLvl2Pieces());
-//       break;
-//       case height === 2:
-//          checkPiecesMoreThan0(getRemainingLvl3Pieces());
-//       break;
-//       case height ===3:
-//          checkPiecesMoreThan0(getRemainingLvl4Pieces());
-//       break;
-//       default:
-//          false;
-//    }
-// }
-
 //Return the remaining pieces
 
 const calcRemainingBlocks = () => {
@@ -493,13 +415,6 @@ const calcRemainingBlocks = () => {
   printLevel3Pieces();
   printLevel4Pieces();
 };
-
-
-
-
-
-
-
 
 //Funcs to display and undisplay legal build squares and moves
 
@@ -618,8 +533,5 @@ const clearLegality = () => {
 //       return buildWhenClicked(gridSquare);
 //    };
 // };
-
-
-
 
 addEventListenersToGrid(deployAPiece);
