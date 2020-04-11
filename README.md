@@ -29,6 +29,14 @@ Deployed via github pages.
 
 Version control with [Git](https://git-scm.com/).  
 
+## Next steps
+
+* Need to code in response for move legality for edge case scenario where no pieces remain of a certain level so certain moves are prohibited.
+* Refactor code now I am a better developer. Much was written as I was learning, so reflects the skill set I had available at that time.
+* Code in ability to play across the web.
+* Code in ability to save, and revert to previous game states so that moves can be 'undone' and people can save games over time and return to them later
+
+
 ## Authors
 
 * **James Nowecki** - *Initial work* - [jamesnowecki](https://github.com/jamesnowecki)
