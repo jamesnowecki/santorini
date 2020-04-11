@@ -23,6 +23,10 @@ class GridSquare {
   clearTheSpace() {
     this.occupant = "empty";
   }
+
+  clearTheHeight() {
+    this.height = 0;
+  }
 }
 
 const a1 = new GridSquare("a1", 0, "empty", ["a2", "b1", "b2"]);
@@ -166,13 +170,11 @@ const deployAlternatePieces = (gridSquare) => {
       theGridSquare.classList.add("occupied-P1");
       gridSquare.occupiedByPlayer1();
       switchTurn();
-      console.log("p1:", isItPlayer1Turn)
     } else {
       const theGridSquare = document.getElementById(gridSquare.position);
       theGridSquare.classList.add("occupied-P2");
       gridSquare.occupiedByPlayer2();
       switchTurn();
-      console.log("p1:", isItPlayer1Turn)
     }
 }
 
@@ -252,7 +254,6 @@ const checkWinCon = gridSquare => {
  
 const clearMovedPieceFromSquare = (oldGridSquare) => {
   oldGridSquare.clearTheSpace();
-  console.log(oldGridSquare.occupant);
   const theGridSquare = document.getElementById(oldGridSquare.position);
   theGridSquare.classList.remove("occupied-P1");
   theGridSquare.classList.remove("occupied-P2");
@@ -261,8 +262,6 @@ const clearMovedPieceFromSquare = (oldGridSquare) => {
 }
 
  const triggerOccupation = (gridSquare, oldGridSquare) => {
-  console.log("occupation triggered")
-
    if (gridSquare.occupant === "empty" && gridSquare.height <= 3 && (oldGridSquare.height >= (gridSquare.height - 1))) {
      decideWhoOccupies(gridSquare);
      clearMovedPieceFromSquare(oldGridSquare);
@@ -497,50 +496,24 @@ const clearLegality = () => {
   return boardArray.forEach(removeLegalClass);
 };
 
-// let isShiftDown = false;
+//Reset game functionality
 
-// window.addEventListener("keydown", event => turnShiftOn(event));
-// window.addEventListener("keyup", event => turnShiftOff(event));
+const clearSquare = (gridSquare) => {
+  gridSquare.clearTheSpace();
+  gridSquare.clearTheHeight();
+  const theGridSquare = document.getElementById(gridSquare.position);
+  theGridSquare.classList.remove("occupied-P1");
+  theGridSquare.classList.remove("occupied-P2");
+};
 
-// shiftclick to place piece
-// const turnShiftOn = event => {
-//   event.shiftKey ? (isShiftDown = true) : null;
-// };
+const resetGame = () => {
+  boardArray.forEach(clearSquare);
+  clearLegality();
+  isItPlayer1Turn = true;
+  removeOnClicks();
+  addEventListenersToGrid(deployAPiece);
+};
 
-// const turnShiftOff = event => {
-//   event.key === "Shift" ? (isShiftDown = false) : null;
-// };
-
-// let isCtrlDown = false;
-
-// window.addEventListener("keydown", event => turnCtrlOn(event));
-// window.addEventListener("keyup", event => turnCtrlOff(event));
-
-// const turnCtrlOn = event => {
-//   event.ctrlKey ? (isCtrlDown = true) : null;
-// };
-
-// const turnCtrlOff = event => {
-//   event.key === "Ctrl" ? (isCtrlDown = false) : null;
-// };
-
-// const checkBuildOrPlace = gridSquare => {
-//   if (isShiftDown) {
-//     return triggerOccupation(gridSquare);
-//   } else {
-//     return buildWhenClicked(gridSquare);
-//   }
-// };
-
-
-// const checkBuildOrPlace = (gridSquare) => {
-//    if(isCtrlDown) {
-//       return selectPieceToMove(gridSquare);
-//    } else if (isShiftDown) {
-//       return triggerOccupation(gridSquare);
-//    } else {
-//       return buildWhenClicked(gridSquare);
-//    };
-// };
+//Set up to start game
 
 addEventListenersToGrid(deployAPiece);
