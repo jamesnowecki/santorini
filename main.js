@@ -263,7 +263,7 @@ const clearMovedPieceFromSquare = (oldGridSquare) => {
  const triggerOccupation = (gridSquare, oldGridSquare) => {
   console.log("occupation triggered")
 
-   if (gridSquare.occupant === "empty" && gridSquare.height <= 3) {
+   if (gridSquare.occupant === "empty" && gridSquare.height <= 3 && (oldGridSquare.height >= (gridSquare.height - 1))) {
      decideWhoOccupies(gridSquare);
      clearMovedPieceFromSquare(oldGridSquare);
      checkWinCon(gridSquare);
@@ -272,7 +272,7 @@ const clearMovedPieceFromSquare = (oldGridSquare) => {
      removeOnClicks();
      addEventListenersToGrid(buildWhenClicked);
    } else {
-     return alert("Cannot move to a 4th-level square or to an occupied space");
+     return alert("Cannot move to a square if the target square is more than 1 higher than your current square, if it is a 4th-level square or an occupied space");
    }
  };
  
