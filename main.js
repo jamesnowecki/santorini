@@ -204,22 +204,30 @@ const deployAPiece = gridSquare => {
     }
 };
  
- const filterForPlayer1Pieces = (gridSquare) => {
-    if (gridSquare.occupant === 'player1Piece') {
-       return gridSquare;
-    } else null;
- };
+//  const filterForPlayer1Pieces = (gridSquare) => {
+//     if (gridSquare.occupant === 'player1Piece') {
+//        return gridSquare;
+//     } else null;
+//  };
 
- const filterForPlayer2Pieces = (gridSquare) => {
-   if (gridSquare.occupant === 'player2Piece') {
-      return gridSquare;
-   } else null;
-};
+//  const filterForPlayer2Pieces = (gridSquare) => {
+//    if (gridSquare.occupant === 'player2Piece') {
+//       return gridSquare;
+//    } else null;
+// };
 
 const findOccupiedSquare = (gridSquare) => {
   if (gridSquare.occupant != "empty") {
     return gridSquare;
   } else null;
+}
+
+const checkLegalDeploy = (gridSquare) => {
+  if (gridSquare.occupant === "empty") {
+    return deployAPiece(gridSquare);
+  } else {
+    return alert("You must choose an unoccupied square to deploy a piece in.");
+  }
 }
 
 const getNumberOfOccupiedSquares = () => {
@@ -514,32 +522,31 @@ const clearLegality = () => {
 
 //Reset game functionality
 
-const clearSquare = (gridSquare) => {
-  gridSquare.clearTheSpace();
-  gridSquare.clearTheHeight();
-  const theGridSquare = document.getElementById(gridSquare.position);
-  theGridSquare.classList.remove("occupied-P1");
-  theGridSquare.classList.remove("occupied-P2");
-  theGridSquare.classList.remove("piece-to-move");
-  theGridSquare.classList.remove("height-1");
-  theGridSquare.classList.remove("height-2");
-  theGridSquare.classList.remove("height-3");
-  theGridSquare.classList.remove("height-4");
+// const clearSquare = (gridSquare) => {
+//   gridSquare.clearTheSpace();
+//   gridSquare.clearTheHeight();
+//   const theGridSquare = document.getElementById(gridSquare.position);
+//   theGridSquare.classList.remove("occupied-P1");
+//   theGridSquare.classList.remove("occupied-P2");
+//   theGridSquare.classList.remove("piece-to-move");
+//   theGridSquare.classList.remove("height-1");
+//   theGridSquare.classList.remove("height-2");
+//   theGridSquare.classList.remove("height-3");
+//   theGridSquare.classList.remove("height-4");
 
-};
+// };
 
-const resetGame = () => {
-  boardArray.forEach(clearSquare);
-  clearLegality();
-  isItPlayer1Turn = true;
-  removeOnClicks();
-  addEventListenersToGrid(deployAPiece);
-};
+// const resetGame = () => {
+//   boardArray.forEach(clearSquare);
+//   clearLegality();
+//   isItPlayer1Turn = true;
+//   removeOnClicks();
+//   addEventListenersToGrid(checkLegalDeploy);
+// };
 
 //Set up to start game
 
-addEventListenersToGrid(deployAPiece);
-
+addEventListenersToGrid(checkLegalDeploy);
 
 //button functionality
 

@@ -80,6 +80,13 @@ button.non-grid {
 
     p {
         display: inline;
+        margin: 2px;
+    }
+
+    .player-color {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
     }
 
     .color-icon {
@@ -91,10 +98,14 @@ button.non-grid {
 
     #iconP1 {
         background-color: rgb(107, 107, 107);
+        margin-left: 10px;
+        margin-top: 7px;
     }
 
     #iconP2 {
         background-color: rgb(241, 155, 213);
+        margin-left: 10px;
+        margin-top: 7px;
     }
 
     .key-pair {

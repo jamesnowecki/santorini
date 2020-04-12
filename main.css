@@ -96,6 +96,20 @@ button.non-grid {
 
 #dashboard p {
   display: inline;
+  margin: 2px;
+}
+
+#dashboard .player-color {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 #dashboard .color-icon {
@@ -107,10 +121,14 @@ button.non-grid {
 
 #dashboard #iconP1 {
   background-color: #6b6b6b;
+  margin-left: 10px;
+  margin-top: 7px;
 }
 
 #dashboard #iconP2 {
   background-color: #f19bd5;
+  margin-left: 10px;
+  margin-top: 7px;
 }
 
 #dashboard .key-pair {
