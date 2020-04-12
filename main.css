@@ -90,7 +90,7 @@ button.non-grid:hover {
           align-items: center;
 }
 
-#dashboard {
+#game-container #dashboard {
   background-color: white;
   border: 2px solid black;
   border-radius: 10px;
@@ -110,12 +110,16 @@ button.non-grid:hover {
           justify-content: space-evenly;
 }
 
-#dashboard p {
+#game-container #dashboard p {
   display: inline;
   margin: 2px;
 }
 
-#dashboard .player-color {
+#game-container #dashboard h2 {
+  font-weight: bolder;
+}
+
+#game-container #dashboard .player-color {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -128,26 +132,7 @@ button.non-grid:hover {
           justify-content: space-evenly;
 }
 
-#dashboard .color-icon {
-  width: 10px;
-  height: 10px;
-  border: 1px solid black;
-  border-radius: 100%;
-}
-
-#dashboard #iconP1 {
-  background-color: #6b6b6b;
-  margin-left: 10px;
-  margin-top: 7px;
-}
-
-#dashboard #iconP2 {
-  background-color: #f19bd5;
-  margin-left: 10px;
-  margin-top: 7px;
-}
-
-#dashboard .key-pair {
+#game-container #dashboard .key-pair {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -160,15 +145,30 @@ button.non-grid:hover {
           justify-content: space-between;
 }
 
-#dashboard .dashboard-key {
+#game-container #dashboard .key-pair .dashboard-key {
   font-weight: bolder;
 }
 
-#dashboard h2 {
-  font-weight: bolder;
+#game-container #dashboard .key-pair .color-icon {
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+  border-radius: 100%;
 }
 
-.game-grid {
+#game-container #dashboard .key-pair #iconP1 {
+  background-color: #6b6b6b;
+  margin-left: 10px;
+  margin-top: 7px;
+}
+
+#game-container #dashboard .key-pair #iconP2 {
+  background-color: #f19bd5;
+  margin-left: 10px;
+  margin-top: 7px;
+}
+
+#game-container .game-grid {
   width: 80vw;
   height: 80vw;
   display: -ms-grid;
@@ -185,45 +185,45 @@ button.non-grid:hover {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.game-grid .grid-square:hover {
+#game-container .game-grid .grid-square:hover {
   cursor: pointer;
 }
 
-.height-0 {
+#game-container .game-grid .height-0 {
   background-color: yellowgreen;
 }
 
-.height-1 {
+#game-container .game-grid .height-1 {
   background-color: yellow;
 }
 
-.height-2 {
+#game-container .game-grid .height-2 {
   background-color: orange;
 }
 
-.height-3 {
+#game-container .game-grid .height-3 {
   background-color: tomato;
 }
 
-.height-4 {
+#game-container .game-grid .height-4 {
   background-color: #4444f8;
 }
 
-.occupied-P1 {
+#game-container .game-grid .occupied-P1 {
   background-color: #6b6b6b;
   border-radius: 100%;
 }
 
-.occupied-P2 {
+#game-container .game-grid .occupied-P2 {
   background-color: #f19bd5;
   border-radius: 100%;
 }
 
-.legal-choice {
+#game-container .game-grid .legal-choice {
   border: 3px solid red;
 }
 
-.piece-to-move {
+#game-container .game-grid .piece-to-move {
   border: 3px solid green;
 }
 
@@ -257,11 +257,11 @@ button.non-grid:hover {
             flex-direction: row-reverse;
     margin-bottom: 15px;
   }
-  #dashboard {
+  #game-container #dashboard {
     width: 40vw;
     padding: 25px;
   }
-  .game-grid {
+  #game-container .game-grid {
     width: 35vw;
     height: 35vw;
   }
@@ -284,11 +284,11 @@ button.non-grid:hover {
         -ms-flex-direction: row-reverse;
             flex-direction: row-reverse;
   }
-  #dashboard {
+  #game-container #dashboard {
     width: 25vw;
     padding: 25px;
   }
-  .game-grid {
+  #game-container .game-grid {
     width: 25vw;
     height: 25vw;
   }
