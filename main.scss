@@ -4,6 +4,7 @@ body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
 }
 
 h1 {
@@ -57,6 +58,10 @@ button.non-grid {
     font-size: 20px;
     font-weight: 700;
     border-radius: 10px;
+
+    &:hover {
+        cursor: pointer;
+      }
 }
 
 #game-container {
@@ -135,6 +140,12 @@ button.non-grid {
     border-radius: 10px;
     margin: 15px 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    .grid-square {
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 .height-0 {
@@ -174,8 +185,21 @@ button.non-grid {
     border: 3px solid green;
 }
 
-@media only screen and (min-width: 426px) {
+@media only screen and (min-width: 555px) {
+    #game-container{
+        flex-direction: row-reverse;
+        margin-bottom: 15px;
+    }
 
+    #dashboard {
+        width: 40vw;
+        padding: 25px;
+    }
+
+    .game-grid {
+        width: 35vw;
+        height: 35vw;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -186,7 +210,6 @@ button.non-grid {
 
     #dashboard {
         width: 25vw;
-        // height: 25vw; 
         padding: 25px;
     }
 

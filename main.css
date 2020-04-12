@@ -58,6 +58,10 @@ button.non-grid {
   border-radius: 10px;
 }
 
+button.non-grid:hover {
+  cursor: pointer;
+}
+
 #game-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -169,6 +173,10 @@ button.non-grid {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.game-grid .grid-square:hover {
+  cursor: pointer;
+}
+
 .height-0 {
   background-color: yellowgreen;
 }
@@ -205,6 +213,24 @@ button.non-grid {
 
 .piece-to-move {
   border: 3px solid green;
+}
+
+@media only screen and (min-width: 555px) {
+  #game-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    margin-bottom: 15px;
+  }
+  #dashboard {
+    width: 40vw;
+    padding: 25px;
+  }
+  .game-grid {
+    width: 35vw;
+    height: 35vw;
+  }
 }
 
 @media only screen and (min-width: 768px) {
