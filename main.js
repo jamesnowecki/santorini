@@ -169,7 +169,6 @@ const updateGameStatus = (stage) => {
   }
 }
 
-
 // Storage variable for last place a piece was placed (e.g. current piece to perform build action); piece selected to move
 let pieceToBuild;
 
@@ -284,7 +283,7 @@ const clearMovedPieceFromSquare = (oldGridSquare) => {
 }
 
  const triggerOccupation = (gridSquare, oldGridSquare) => {
-   if (gridSquare.occupant === "empty" && gridSquare.height <= 3 && (oldGridSquare.height >= (gridSquare.height - 1))) {
+   if (gridSquare.occupant === "empty" && gridSquare.height <= 3 && (oldGridSquare.height >= (gridSquare.height - 1)) && oldGridSquare.adjacencies.includes(gridSquare.position)) {
      decideWhoOccupies(gridSquare);
      clearMovedPieceFromSquare(oldGridSquare);
      checkWinCon(gridSquare);
