@@ -203,18 +203,6 @@ const deployAPiece = gridSquare => {
     }
 };
  
-//  const filterForPlayer1Pieces = (gridSquare) => {
-//     if (gridSquare.occupant === 'player1Piece') {
-//        return gridSquare;
-//     } else null;
-//  };
-
-//  const filterForPlayer2Pieces = (gridSquare) => {
-//    if (gridSquare.occupant === 'player2Piece') {
-//       return gridSquare;
-//    } else null;
-// };
-
 const findOccupiedSquare = (gridSquare) => {
   if (gridSquare.occupant != "empty") {
     return gridSquare;
@@ -259,7 +247,6 @@ const getNumberOfOccupiedSquares = () => {
    return selectPieceToMove(gridSquare);
  };
  
-
 // move pieces around
 
 const checkWinCon = gridSquare => {
@@ -307,7 +294,6 @@ const clearMovedPieceFromSquare = (oldGridSquare) => {
      return gridSquare.occupiedByPlayer2();
    }
  };
-
 
 //funcs to increase height of squares
 
