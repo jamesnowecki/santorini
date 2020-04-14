@@ -196,7 +196,7 @@ const deployAPiece = gridSquare => {
       deployAlternatePieces(gridSquare)
       removeOnClicks();
       addEventListenersToGrid(checkLegalSelect);
-      alert("deployment ended")
+      alert("Deployment phase ended")
       updateGameStatus("select");
     } else {
       deployAlternatePieces(gridSquare);
