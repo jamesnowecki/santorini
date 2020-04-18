@@ -182,11 +182,13 @@ const deployAlternatePieces = (gridSquare) => {
       theGridSquare.classList.add("occupied-P1");
       gridSquare.occupiedByPlayer1();
       switchTurn();
+      displayTurnNotifier();
     } else {
       const theGridSquare = document.getElementById(gridSquare.position);
       theGridSquare.classList.add("occupied-P2");
       gridSquare.occupiedByPlayer2();
       switchTurn();
+      displayTurnNotifier();
     }
 }
 
